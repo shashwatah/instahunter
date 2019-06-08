@@ -60,7 +60,7 @@ def getuser(user_id, create_file):
         username = user["username"]
         full_name = user["full_name"]
         is_private = user["is_private"]
-        profile_pic_url = user["profile_pic_url"]
+        profile_pic_url = user["hd_profile_pic_versions"][0]["url"]
         is_verified = user["is_verified"]
         uploads = user["media_count"]
         followers = user["follower_count"]
