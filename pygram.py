@@ -12,10 +12,10 @@ def cli():
 @click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
 def getposts(tag, create_file):
     if(create_file == "true"):
-        file = open("data.txt", "w+", encoding="utf-8")
+        file = open("posts.txt", "w+", encoding="utf-8")
     counter = 0
-    apiUrl = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
-    req = requests.get(url=apiUrl)
+    api_url = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
+    req = requests.get(url=api_url)
     data = req.json()
     edges = data["graphql"]["hashtag"]["edge_hashtag_to_media"]["edges"]
     for edge in edges:
@@ -38,16 +38,39 @@ def getposts(tag, create_file):
             click.echo("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
                 counter, post_id, shortcode, owner_id, image_url, caption, nlikes, ncomments))
     if(create_file == "true"):
-        click.echo("File Created")
+        click.echo("File Created, name: 'posts.txt'")
         file.close()
     else:
         click.echo("Done!")
 
 
 @click.command()
-@click.option('--userid', prompt="User ID", help='The User ID you want to search the user by')
-def getuser(userid):
-    click.echo(userid)
+@click.option('--user-id', prompt="User ID", help='The User ID you want to search the user by')
+@click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
+def getuser(user_id, create_file):
+    api_url = "https://i.instagram.com/api/v1/users/%s/info" % user_id
+    req = requests.get(url=api_url)
+    data = req.json()
+    user = data["user"]
+    username = user["username"]
+    full_name = user["full_name"]
+    is_private = user["is_private"]
+    profile_pic_url = user["profile_pic_url"]
+    is_verified = user["is_verified"]
+    uploads = user["media_count"]
+    followers = user["follower_count"]
+    following = user["following_count"]
+    bio = user["biography"]
+    if(create_file == "true"):
+        file = open("user.txt", "w+", encoding="utf-8")
+        file.write("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
+            username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
+        file.close()
+        click.echo("File Created, name: 'user.txt'")
+    else:
+        click.echo("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
+            username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
+        click.echo('Done!')
 
 
 cli.add_command(getposts)
