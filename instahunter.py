@@ -85,12 +85,17 @@ def getuser(user_id, create_file, file_type):
         username = user["username"]
         full_name = user["full_name"]
         is_private = user["is_private"]
-        profile_pic_url = user["hd_profile_pic_versions"][0]["url"]
+        profile_pic_url = user["hd_profile_pic_url_info"]["url"]
         is_verified = user["is_verified"]
         uploads = user["media_count"]
         followers = user["follower_count"]
         following = user["following_count"]
         bio = user["biography"]
+        tags_following = user["following_tag_count"]
+        external_url = user["external_url"]
+        igtv_videos = user["total_igtv_videos"]
+        tagged = user["usertags_count"]
+        has_highlights = user["has_highlight_reels"]
         if(create_file == "true"):
             if(file_type == "json"):
                 file = open(user_id+"_user.json", "w+")
@@ -103,19 +108,24 @@ def getuser(user_id, create_file, file_type):
                     "Followers": followers,
                     "Following": following,
                     "Private ID": is_private,
-                    "Verified ID": is_verified
+                    "Verified ID": is_verified,
+                    "Tags following": tags_following,
+                    "External URL": external_url,
+                    "IGTV videos": igtv_videos,
+                    "Times user was tagged": tagged,
+                    "Has highlights": has_highlights
                 }, file)
                 file.close()
                 click.echo("File Created, name: '%s_user.json'" % str(user_id))
             else:
                 file = open(user_id+"_user.txt", "w+", encoding="utf-8")
-                file.write("Username: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
-                    username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
+                file.write("Username: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nTags following: %s \nExternal URL: %s \nIGTV videos: %s \nTimes user was tagged: %s \nHas highlights: %s" % (
+                    username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified), str(tags_following), external_url, str(igtv_videos), str(tagged), str(has_highlights)))
                 file.close()
                 click.echo("File Created, name: '%s_user.txt'" % str(user_id))
         else:
-            click.echo("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
-                username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
+            click.echo("Username: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nTags following: %s \nExternal URL: %s \nIGTV videos: %s \nTimes user was tagged: %s \nHas highlights: %s" % (
+                username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified), str(tags_following), external_url, str(igtv_videos), str(tagged), str(has_highlights)))
             click.echo('Done!')
     except:
         click.echo(
