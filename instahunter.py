@@ -13,7 +13,7 @@ def cli():
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getposts(tag, create_file, file_type):
-    """Made by KSSBro | v1.1"""
+    """This command will help you get posts by entering a hashtag"""
     try:
         if(create_file == "true"):
             if(file_type == "json"):
@@ -76,7 +76,7 @@ def getposts(tag, create_file, file_type):
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getuser(user_id, create_file, file_type):
-    """Made by KSSBro | v1.1"""
+    """This command will help you get user data by entering user id"""
     try:
         api_url = "https://i.instagram.com/api/v1/users/%s/info" % user_id
         req = requests.get(url=api_url)
@@ -127,7 +127,7 @@ def getuser(user_id, create_file, file_type):
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getuserid(username, create_file, file_type):
-    """Made by KSSBro | v1.1"""
+    """This command will help you get user id by entering username"""
     try:
         api_url = "https://www.instagram.com/%s/?__a=1" % username
         req = requests.get(url=api_url)
