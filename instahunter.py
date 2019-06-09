@@ -1,5 +1,6 @@
 import click
 import requests
+import json
 
 
 @click.group()
@@ -16,7 +17,7 @@ def getposts(tag, create_file, file_type):
     try:
         if(create_file == "true"):
             if(file_type == "json"):
-                file = open("posts.json", "w+", encoding="utf-8")
+                file = open("posts.json", "w+")
                 json_data = []
             else:
                 file = open("posts.txt", "w+", encoding="utf-8")
@@ -58,7 +59,7 @@ def getposts(tag, create_file, file_type):
                     counter, post_id, shortcode, owner_id, image_url, caption, nlikes, ncomments))
         if(create_file == "true"):
             if(file_type == "json"):
-                file.write(str(json_data))
+                json.dump(json_data, file)
                 click.echo("File Created, name: 'posts.json'")
             else:
                 click.echo("File Create, name: 'posts.txt")
@@ -73,7 +74,8 @@ def getposts(tag, create_file, file_type):
 @click.command()
 @click.option('--user-id', prompt="User ID", help='The User ID you want to search the user by')
 @click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
-def getuser(user_id, create_file):
+@click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
+def getuser(user_id, create_file, file_type):
     """Made by KSSBro | v1.1"""
     try:
         api_url = "https://i.instagram.com/api/v1/users/%s/info" % user_id
@@ -90,11 +92,27 @@ def getuser(user_id, create_file):
         following = user["following_count"]
         bio = user["biography"]
         if(create_file == "true"):
-            file = open("user.txt", "w+", encoding="utf-8")
-            file.write("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
-                username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
-            file.close()
-            click.echo("File Created, name: 'user.txt'")
+            if(file_type == "json"):
+                file = open("user.json", "w+")
+                json.dump({
+                    "Username": username,
+                    "Full Name": full_name,
+                    "Profile Pic URL": profile_pic_url,
+                    "Bio": bio,
+                    "Uploads": uploads,
+                    "Followers": followers,
+                    "Following": following,
+                    "Private ID": is_private,
+                    "Verified ID": is_verified
+                }, file)
+                file.close()
+                click.echo("File Created, name: 'user.json'")
+            else:
+                file = open("user.txt", "w+", encoding="utf-8")
+                file.write("Username: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
+                    username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
+                file.close()
+                click.echo("File Created, name: 'user.txt'")
         else:
             click.echo("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
                 username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
