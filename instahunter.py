@@ -8,13 +8,18 @@ def cli():
 
 
 @click.command()
-@click.option('--tag', prompt="Hashtag", help="The hashtags you want to search the posts with")
-@click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
-def getposts(tag, create_file):
+@click.option('--tag', prompt="Hashtag", help="The hashtag you want to search the posts with")
+@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
+def getposts(tag, create_file, file_type):
     """Made by KSSBro | v1.1"""
     try:
         if(create_file == "true"):
-            file = open("posts.txt", "w+", encoding="utf-8")
+            if(file_type == "json"):
+                file = open("posts.json", "w+", encoding="utf-8")
+                json_data = []
+            else:
+                file = open("posts.txt", "w+", encoding="utf-8")
         counter = 0
         api_url = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
         req = requests.get(url=api_url)
@@ -34,13 +39,29 @@ def getposts(tag, create_file):
             nlikes = edge["node"]["edge_liked_by"]["count"]
             owner_id = edge["node"]["owner"]["id"]
             if(create_file == "true"):
-                file.write("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
-                    str(counter), str(post_id), str(shortcode), str(owner_id), str(image_url), str(caption), str(nlikes), str(ncomments)))
+                if(file_type == "json"):
+                    json_data.append({
+                        "Number": counter,
+                        "Post ID": post_id,
+                        "Shortcode": shortcode,
+                        "Owner ID": owner_id,
+                        "Image URL": image_url,
+                        "Caption": caption,
+                        "Number of likes": nlikes,
+                        "Number of Comments": ncomments
+                    })
+                else:
+                    file.write("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
+                        str(counter), str(post_id), str(shortcode), str(owner_id), str(image_url), str(caption), str(nlikes), str(ncomments)))
             else:
                 click.echo("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
                     counter, post_id, shortcode, owner_id, image_url, caption, nlikes, ncomments))
         if(create_file == "true"):
-            click.echo("File Created, name: 'posts.txt'")
+            if(file_type == "json"):
+                file.write(str(json_data))
+                click.echo("File Created, name: 'posts.json'")
+            else:
+                click.echo("File Create, name: 'posts.txt")
             file.close()
         else:
             click.echo("Done!")
@@ -51,7 +72,7 @@ def getposts(tag, create_file):
 
 @click.command()
 @click.option('--user-id', prompt="User ID", help='The User ID you want to search the user by')
-@click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
+@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 def getuser(user_id, create_file):
     """Made by KSSBro | v1.1"""
     try:
@@ -85,7 +106,7 @@ def getuser(user_id, create_file):
 
 @click.command()
 @click.option('--username', prompt="Username", help='The username of the user you want to search the user id of')
-@click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
+@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 def getuserid(username, create_file):
     """Made by KSSBro | v1.1"""
     try:
