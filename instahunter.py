@@ -4,14 +4,14 @@ import requests
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.0"""
+    """Made by KSSBro | v1.1"""
 
 
 @click.command()
 @click.option('--tag', prompt="Hashtag", help="The hashtags you want to search the posts with")
 @click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
 def getposts(tag, create_file):
-    """Made by KSSBro | v1.0"""
+    """Made by KSSBro | v1.1"""
     try:
         if(create_file == "true"):
             file = open("posts.txt", "w+", encoding="utf-8")
@@ -53,7 +53,7 @@ def getposts(tag, create_file):
 @click.option('--user-id', prompt="User ID", help='The User ID you want to search the user by')
 @click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
 def getuser(user_id, create_file):
-    """Made by KSSBro | v1.0"""
+    """Made by KSSBro | v1.1"""
     try:
         api_url = "https://i.instagram.com/api/v1/users/%s/info" % user_id
         req = requests.get(url=api_url)
@@ -87,7 +87,7 @@ def getuser(user_id, create_file):
 @click.option('--username', prompt="Username", help='The username of the user you want to search the user id of')
 @click.option('--create-file', default="false", help="If you want to create a file with the data then write true")
 def getuserid(username, create_file):
-    """Made by KSSBro | v1.0"""
+    """Made by KSSBro | v1.1"""
     try:
         api_url = "https://www.instagram.com/%s/?__a=1" % username
         req = requests.get(url=api_url)
