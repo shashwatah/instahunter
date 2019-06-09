@@ -125,7 +125,8 @@ def getuser(user_id, create_file, file_type):
 @click.command()
 @click.option('--username', prompt="Username", help='The username of the user you want to search the user id of')
 @click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
-def getuserid(username, create_file):
+@click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
+def getuserid(username, create_file, file_type):
     """Made by KSSBro | v1.1"""
     try:
         api_url = "https://www.instagram.com/%s/?__a=1" % username
@@ -133,10 +134,20 @@ def getuserid(username, create_file):
         data = req.json()
         user_id = data["graphql"]["user"]["id"]
         if(create_file == "true"):
-            file = open("user_id.txt", "w+", encoding="utf-8")
-            file.write("User ID for username '%s': %s" % (username, user_id))
-            file.close()
-            click.echo("File Created, name: 'user_id.txt'")
+            if(file_type == "json"):
+                file = open("user_id.json", "w+")
+                json.dump({
+                    "Username": username,
+                    "User ID": user_id
+                }, file),
+                file.close()
+                click.echo("File Created, name: 'user_id.json'")
+            else:
+                file = open("user_id.txt", "w+", encoding="utf-8")
+                file.write("User ID for username '%s': %s" % (
+                    username, user_id))
+                file.close()
+                click.echo("File Created, name: 'user_id.txt'")
         else:
             click.echo("User ID for username '%s': %s" % (username, user_id))
             click.echo("Done!")
