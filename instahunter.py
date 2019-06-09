@@ -9,18 +9,18 @@ def cli():
 
 
 @click.command()
-@click.option('--tag', prompt="Hashtag", help="The hashtag you want to search the posts with")
-@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('-tag', prompt="Hashtag", help="The hashtag you want to search the posts with")
+@click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getposts(tag, create_file, file_type):
     """Made by KSSBro | v1.1"""
     try:
         if(create_file == "true"):
             if(file_type == "json"):
-                file = open("posts.json", "w+")
+                file = open(tag+"_posts.json", "w+")
                 json_data = []
             else:
-                file = open("posts.txt", "w+", encoding="utf-8")
+                file = open(tag+"_posts.txt", "w+", encoding="utf-8")
         counter = 0
         api_url = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
         req = requests.get(url=api_url)
@@ -60,9 +60,9 @@ def getposts(tag, create_file, file_type):
         if(create_file == "true"):
             if(file_type == "json"):
                 json.dump(json_data, file)
-                click.echo("File Created, name: 'posts.json'")
+                click.echo("File Created, name: '%s_posts.json'" % tag)
             else:
-                click.echo("File Create, name: 'posts.txt")
+                click.echo("File Create, name: '%s_posts.txt" % tag)
             file.close()
         else:
             click.echo("Done!")
@@ -72,8 +72,8 @@ def getposts(tag, create_file, file_type):
 
 
 @click.command()
-@click.option('--user-id', prompt="User ID", help='The User ID you want to search the user by')
-@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('-user-id', prompt="User ID", help='The User ID you want to search the user by')
+@click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getuser(user_id, create_file, file_type):
     """Made by KSSBro | v1.1"""
@@ -93,7 +93,7 @@ def getuser(user_id, create_file, file_type):
         bio = user["biography"]
         if(create_file == "true"):
             if(file_type == "json"):
-                file = open("user.json", "w+")
+                file = open(user_id+"_user.json", "w+")
                 json.dump({
                     "Username": username,
                     "Full Name": full_name,
@@ -106,13 +106,13 @@ def getuser(user_id, create_file, file_type):
                     "Verified ID": is_verified
                 }, file)
                 file.close()
-                click.echo("File Created, name: 'user.json'")
+                click.echo("File Created, name: '%s_user.json'" % str(user_id))
             else:
-                file = open("user.txt", "w+", encoding="utf-8")
+                file = open(user_id+"_user.txt", "w+", encoding="utf-8")
                 file.write("Username: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
                     username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
                 file.close()
-                click.echo("File Created, name: 'user.txt'")
+                click.echo("File Created, name: '%s_user.txt'" % str(user_id))
         else:
             click.echo("Username: %s \nFull Name: %s \nProfile Pic Url: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s" % (
                 username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified)))
@@ -123,8 +123,8 @@ def getuser(user_id, create_file, file_type):
 
 
 @click.command()
-@click.option('--username', prompt="Username", help='The username of the user you want to search the user id of')
-@click.option('--create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('-username', prompt="Username", help='The username of the user you want to search the user id of')
+@click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getuserid(username, create_file, file_type):
     """Made by KSSBro | v1.1"""
@@ -135,19 +135,19 @@ def getuserid(username, create_file, file_type):
         user_id = data["graphql"]["user"]["id"]
         if(create_file == "true"):
             if(file_type == "json"):
-                file = open("user_id.json", "w+")
+                file = open(username+"_user_id.json", "w+")
                 json.dump({
                     "Username": username,
                     "User ID": user_id
                 }, file),
                 file.close()
-                click.echo("File Created, name: 'user_id.json'")
+                click.echo("File Created, name: '%s_user_id.json'" % username)
             else:
-                file = open("user_id.txt", "w+", encoding="utf-8")
+                file = open(username+"_user_id.txt", "w+", encoding="utf-8")
                 file.write("User ID for username '%s': %s" % (
                     username, user_id))
                 file.close()
-                click.echo("File Created, name: 'user_id.txt'")
+                click.echo("File Created, name: '%s_user_id.txt'" % username)
         else:
             click.echo("User ID for username '%s': %s" % (username, user_id))
             click.echo("Done!")
