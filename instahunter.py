@@ -5,7 +5,7 @@ import json
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.1"""
+    """Made by KSSBro | v1.2"""
 
 
 @click.command()
