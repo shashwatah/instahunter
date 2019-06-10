@@ -48,7 +48,7 @@ instahunter --help
 
 #### Getting Posts
 
-Use the command **getposts** and option **-tag** to search for posts
+Use the command **getposts** and option **-tag** to search for posts.
 
 ```
 instahuter getposts -tag *the_hashtag_you_want_to_search_posts_for*
@@ -56,7 +56,7 @@ instahuter getposts -tag *the_hashtag_you_want_to_search_posts_for*
 
 #### Getting User Data
 
-Use the command **getuser** and option **-user-id** to get user data
+Use the command **getuser** and option **-user-id** to get user data.
 
 ```
 instahunter getuser -user-id *user_id*
@@ -64,17 +64,17 @@ instahunter getuser -user-id *user_id*
 
 #### Getting User ID
 
-Use the command **getuserid** and option **-username** to get user id
+Use the command **getuserid** and option **-username** to get user id.
 
 ```
 instahunter getuserid -username *username*
 ```
 
-> All the above commands will display data in the cli itself
+> All the above commands will display data in the terminal itself.
 
 #### Creating a file with the data
 
-To create a file with the data retrieved use **-create-file** and **--file-type** options with any option
+To create a file with the data retrieved use **-create-file** and **--file-type** options along with any option.
 
 Options:
 
