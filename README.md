@@ -36,14 +36,14 @@ Running from the executable:
 instahunter
 ```
 
-To get information about the commands:
-
-```
-python instahunter.py --help
-```
+To get help use **--help**:
 
 ```
 instahunter --help
+```
+
+```
+instahunter getposts --help
 ```
 
 #### Getting Posts
