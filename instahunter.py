@@ -5,7 +5,7 @@ import json
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.2"""
+    """Made by KSSBro | v1.3"""
 
 
 @click.command()
@@ -36,27 +36,27 @@ def getposts(tag, create_file, file_type):
             except:
                 caption = "No Caption"
             ncomments = edge["node"]["edge_media_to_comment"]["count"]
-            image_url = edge["node"]["display_url"]
+            display_url = edge["node"]["display_url"]
             nlikes = edge["node"]["edge_liked_by"]["count"]
             owner_id = edge["node"]["owner"]["id"]
             if(create_file == "true"):
                 if(file_type == "json"):
                     json_data.append({
-                        "Number": counter,
-                        "Post ID": post_id,
-                        "Shortcode": shortcode,
-                        "Owner ID": owner_id,
-                        "Image URL": image_url,
-                        "Caption": caption,
-                        "Number of likes": nlikes,
-                        "Number of Comments": ncomments
+                        "id": counter,
+                        "post_id": post_id,
+                        "shortcode": shortcode,
+                        "owner_id": owner_id,
+                        "display_url": display_url,
+                        "caption": caption,
+                        "n_likes": nlikes,
+                        "n_comments": ncomments
                     })
                 else:
-                    file.write("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
-                        str(counter), str(post_id), str(shortcode), str(owner_id), str(image_url), str(caption), str(nlikes), str(ncomments)))
+                    file.write("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
+                        str(counter), str(post_id), str(shortcode), str(owner_id), str(display_url), str(caption), str(nlikes), str(ncomments)))
             else:
                 click.echo("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nNumber of likes: %s \nNumber of comments: %s \n###############################\n\n\n\n\n" % (
-                    counter, post_id, shortcode, owner_id, image_url, caption, nlikes, ncomments))
+                    counter, post_id, shortcode, owner_id, display_url, caption, nlikes, ncomments))
         if(create_file == "true"):
             if(file_type == "json"):
                 json.dump(json_data, file)
@@ -100,20 +100,20 @@ def getuser(user_id, create_file, file_type):
             if(file_type == "json"):
                 file = open(user_id+"_user.json", "w+")
                 json.dump({
-                    "Username": username,
-                    "Full Name": full_name,
-                    "Profile Pic URL": profile_pic_url,
-                    "Bio": bio,
-                    "Uploads": uploads,
-                    "Followers": followers,
-                    "Following": following,
-                    "Private ID": is_private,
-                    "Verified ID": is_verified,
-                    "Tags following": tags_following,
-                    "External URL": external_url,
-                    "IGTV videos": igtv_videos,
-                    "Times user was tagged": tagged,
-                    "Has highlights": has_highlights
+                    "username": username,
+                    "full_name": full_name,
+                    "profile_pic_url": profile_pic_url,
+                    "bio": bio,
+                    "n_uploads": uploads,
+                    "n_followers": followers,
+                    "n_following": following,
+                    "private_id": is_private,
+                    "verified_id": is_verified,
+                    "tags_following": tags_following,
+                    "external_url": external_url,
+                    "igtv_videos": igtv_videos,
+                    "n_tagged": tagged,
+                    "has_highlights": has_highlights
                 }, file)
                 file.close()
                 click.echo("File Created, name: '%s_user.json'" % str(user_id))
@@ -147,8 +147,8 @@ def getuserid(username, create_file, file_type):
             if(file_type == "json"):
                 file = open(username+"_user_id.json", "w+")
                 json.dump({
-                    "Username": username,
-                    "User ID": user_id
+                    "username": username,
+                    "user_id": user_id
                 }, file),
                 file.close()
                 click.echo("File Created, name: '%s_user_id.json'" % username)
