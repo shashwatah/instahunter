@@ -6,7 +6,7 @@ Instahunter is a CLI app that can retrieve posts and user data from Instagram.
 
 ### Prerequisites
 
-To run the app from source - [Git](https://git-scm.com/) is needed to clone the repository on your machine. [Python](https://www.python.org/) and [Click](https://click.palletsprojects.com/en/7.x/) are required to run the app.
+To run the app from source - [Git](https://git-scm.com/) is needed to clone the repository on your machine. [Python](https://www.python.org/) and [Click](https://click.palletsprojects.com/en/7.x/) are required to run the app from the source.
 
 ### Installing
 
@@ -56,18 +56,23 @@ instahuter getposts -tag *the_hashtag_you_want_to_search_posts_for*
 
 #### Getting User Data
 
-Use the command **getuser** and option **-user-id** to get user data.
+Use the command **getuser** to get user data
+
+Options:
+
+- `-via`: username(default) - fetch data with username, id - fetch date with user id
+- `--value` : username or id you want to fetch data with, depending upon your choice in **-via**
 
 ```
-instahunter getuser -user-id *user_id*
+instahunter getuser -via *username or id* --value *value*
 ```
 
-#### Getting User ID
+#### Getting User Posts
 
-Use the command **getuserid** and option **-username** to get user id.
+Use the command **getuserposts** and option **-username** to get user id.
 
 ```
-instahunter getuserid -username *username*
+instahunter getuserposts -username *username*
 ```
 
 > All the above commands will display data in the terminal itself.
