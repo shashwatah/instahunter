@@ -56,7 +56,7 @@ instahuter getposts -tag *the_hashtag_you_want_to_search_posts_for*
 
 #### Getting User Data
 
-Use the command **getuser** to get user data
+Use the command **getuser** to get user data.
 
 Options:
 
@@ -69,7 +69,7 @@ instahunter getuser -via *username or id* --value *value*
 
 #### Getting User Posts
 
-Use the command **getuserposts** and option **-username** to get user id.
+Use the command **getuserposts** and option **-username** to get posts.
 
 ```
 instahunter getuserposts -username *username*
