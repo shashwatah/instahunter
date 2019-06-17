@@ -1,6 +1,6 @@
 # Instahunter
 
-Instahunter is a CLI app that can retrieve posts and user data from Instagram.
+Instahunter is a CLI app that can fetch posts and user data from Instagram.
 
 ## Getting Started
 
