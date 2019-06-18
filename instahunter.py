@@ -16,6 +16,7 @@ def cli():
 def getposts(tag, create_file, file_type):
     """This command will fetch recent public posts with a Hashtag"""
     try:
+        # Creating file if required, creating array json_data to store data if the file type is json
         if(create_file == "true"):
             if(file_type == "json"):
                 file = open(tag+"_posts.json", "w+")
@@ -27,8 +28,10 @@ def getposts(tag, create_file, file_type):
         req = requests.get(url=api_url)
         data = req.json()
         edges = data["graphql"]["hashtag"]["edge_hashtag_to_media"]["edges"]
+        # Looping through 'edges' in the data acquired
         for edge in edges:
             counter = counter + 1
+            # Collecting necessary data from each edge
             post_id = edge["node"]["id"]
             shortcode = edge["node"]["shortcode"]
             caption = ""
@@ -44,6 +47,7 @@ def getposts(tag, create_file, file_type):
             time = str(datetime.fromtimestamp(
                 edge["node"]["taken_at_timestamp"]))
             if(create_file == "true"):
+                # If the file type is json then appending the data to json_data array instead of writing it to the file right away
                 if(file_type == "json"):
                     json_data.append({
                         "id": counter,
@@ -64,6 +68,7 @@ def getposts(tag, create_file, file_type):
                 click.echo("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
                     counter, post_id, shortcode, owner_id, display_url, caption, time, nlikes, ncomments, is_video))
         if(create_file == "true"):
+            # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
                 json.dump(json_data, file)
                 click.echo("File Created, name: '%s_posts.json'" % tag)
@@ -84,6 +89,7 @@ def getposts(tag, create_file, file_type):
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getuser(via, value, create_file, file_type):
     """This command will fetch user data with a Username or ID"""
+    # Setting the api url depending upon the user's choice
     if(via == "id"):
         api_url = "https://i.instagram.com/api/v1/users/%s/info" % value
     elif(via == "username"):
@@ -91,6 +97,7 @@ def getuser(via, value, create_file, file_type):
     try:
         req = requests.get(url=api_url)
         data = req.json()
+        # Collecting necessary data
         if(via == "id"):
             user = data["user"]
             profile_pic_url = user["hd_profile_pic_url_info"]["url"]
@@ -166,6 +173,7 @@ def getuser(via, value, create_file, file_type):
 def getuserposts(username, create_file, file_type):
     """This command will fetch recent posts of a user with a Username"""
     try:
+        # Creating file if required, creating array json_data to store data if the file type is json
         if(create_file == "true"):
             if(file_type == "json"):
                 file = open(username+"_posts.json", "w+")
@@ -177,9 +185,11 @@ def getuserposts(username, create_file, file_type):
         req = requests.get(url=api_url)
         data = req.json()
         posts = data["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"]
+        # Looping through posts
         for post in posts:
             counter = counter + 1
             node = post["node"]
+            # Collecting necessary data
             post_id = node["id"]
             try:
                 caption = node["edge_media_to_caption"]["edges"][0]["node"]["text"]
@@ -200,6 +210,7 @@ def getuserposts(username, create_file, file_type):
             is_video = node["is_video"]
             if(create_file == "true"):
                 if(file_type == "json"):
+                    # If the file type is json then appending the data to json_data array instead of writing it to the file right away
                     json_data.append({
                         "id": counter,
                         "post_id": post_id,
@@ -222,6 +233,7 @@ def getuserposts(username, create_file, file_type):
                 click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nDisplay URL: %s \nImage Height: %s \nImage Width: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nComments Disabled: %s \nNumber of comments: %s \nLocation: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
                     counter, post_id, shortcode, display_url, height, width, caption, time, nlikes, comments_disabled, ncomments, location, is_video))
         if(create_file == "true"):
+            # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
                 json.dump(json_data, file)
                 click.echo("File Created, name: '%s_posts.json'" % username)
