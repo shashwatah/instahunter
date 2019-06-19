@@ -1,3 +1,5 @@
+<img alt="Instahunter" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/main_logo_blue.png" height="100">
+
 # Instahunter
 
 Instahunter is a CLI app that can fetch posts and user data from Instagram.
@@ -92,7 +94,7 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release
 
-v1.2 has been released.
+v1.4 has been released.
 The executable is available in the release section.
 
 ## Built with
