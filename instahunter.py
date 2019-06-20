@@ -247,9 +247,28 @@ def getuserposts(username, create_file, file_type):
             "Couldn't retrieve data, One of the following was the issue: \n1. Your query was wrong \n2. Instagram servers did not respond \n3. There is a problem with your internet connection")
 
 
+@click.command()
+@click.option('-query', prompt="Query", help="Search Term")
+@click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
+def search(query, create_file, file_type):
+    try:
+        api_url = "https://www.instagram.com/web/search/topsearch/?query=$%s" % query
+        req = requests.get(api_url)
+        data = req.json()
+        file = open("data.json", "w+")
+        json.dump(data, file)
+        file.close()
+        click.echo("File Created, name: data.json")
+    except:
+        click.echo(
+            "Couldn't retrieve data, One of the following was the issue: \n1. Your query was wrong \n2. Instagram servers did not respond \n3. There is a problem with your internet connection")
+
+
 cli.add_command(getposts)
 cli.add_command(getuser)
 cli.add_command(getuserposts)
+cli.add_command(search)
 
 if __name__ == "__main__":
     cli()
