@@ -32,41 +32,33 @@ def getposts(tag, create_file, file_type):
         for edge in edges:
             counter = counter + 1
             # Collecting necessary data from each edge
-            post_id = edge["node"]["id"]
-            shortcode = edge["node"]["shortcode"]
-            caption = ""
             try:
                 caption = edge["node"]["edge_media_to_caption"]["edges"][0]["node"]["text"]
             except:
                 caption = "No Caption"
-            ncomments = edge["node"]["edge_media_to_comment"]["count"]
-            display_url = edge["node"]["display_url"]
-            nlikes = edge["node"]["edge_liked_by"]["count"]
-            owner_id = edge["node"]["owner"]["id"]
-            is_video = edge["node"]["is_video"]
-            time = str(datetime.fromtimestamp(
-                edge["node"]["taken_at_timestamp"]))
+            scraped_data = {
+                "id": counter,
+                "post_id": edge["node"]["id"],
+                "shortcode": edge["node"]["shortcode"],
+                "owner_id": edge["node"]["owner"]["id"],
+                "display_url": edge["node"]["display_url"],
+                "caption": caption,
+                "time": str(datetime.fromtimestamp(
+                    edge["node"]["taken_at_timestamp"])),
+                "n_likes": edge["node"]["edge_liked_by"]["count"],
+                "n_comments": edge["node"]["edge_media_to_comment"]["count"],
+                "is_video": edge["node"]["is_video"]
+            }
             if(create_file == "true"):
                 # If the file type is json then appending the data to json_data array instead of writing it to the file right away
                 if(file_type == "json"):
-                    json_data.append({
-                        "id": counter,
-                        "post_id": post_id,
-                        "shortcode": shortcode,
-                        "owner_id": owner_id,
-                        "display_url": display_url,
-                        "caption": caption,
-                        "time": time,
-                        "n_likes": nlikes,
-                        "n_comments": ncomments,
-                        "is_video": is_video
-                    })
+                    json_data.append(scraped_data)
                 else:
                     file.write("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                        str(counter), str(post_id), str(shortcode), str(owner_id), str(display_url), str(caption), str(time), str(nlikes), str(ncomments), str(is_video)))
+                        str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["owner_id"]), str(scraped_data["display_url"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["n_comments"]), str(scraped_data["is_video"])))
             else:
-                click.echo("###############################\nNumber: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nImage URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                    counter, post_id, shortcode, owner_id, display_url, caption, time, nlikes, ncomments, is_video))
+                click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
+                        counter, scraped_data["post_id"], scraped_data["shortcode"], scraped_data["owner_id"], scraped_data["display_url"], scraped_data["caption"], scraped_data["time"], scraped_data["n_likes"], scraped_data["n_comments"], scraped_data["is_video"]))
         if(create_file == "true"):
             # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
@@ -123,43 +115,38 @@ def getuser(via, value, create_file, file_type):
             else:
                 has_highlights = False
             user_id = user["id"]
-        username = user["username"]
-        full_name = user["full_name"]
-        is_private = user["is_private"]
-        is_verified = user["is_verified"]
-        bio = user["biography"]
-        external_url = user["external_url"]
+        scraped_data = {
+            "user_id": user_id,
+            "username": user["username"],
+            "full_name": user["full_name"],
+            "profile_pic_url": profile_pic_url,
+            "bio": user["biography"],
+            "n_uploads": uploads,
+            "n_followers": followers,
+            "n_following": following,
+            "is_private": user["is_private"],
+            "is_verified": user["is_verified"],
+            "tags_following": tags_following,
+            "external_url": user["external_url"],
+            "igtv_videos": igtv_videos,
+            "n_tagged": tagged,
+            "has_highlights": has_highlights
+        }
         if(create_file == "true"):
             if(file_type == "json"):
                 file = open(value+"_user.json", "w+")
-                json.dump({
-                    "user_id": user_id,
-                    "username": username,
-                    "full_name": full_name,
-                    "profile_pic_url": profile_pic_url,
-                    "bio": bio,
-                    "n_uploads": uploads,
-                    "n_followers": followers,
-                    "n_following": following,
-                    "private_id": is_private,
-                    "verified_id": is_verified,
-                    "tags_following": tags_following,
-                    "external_url": external_url,
-                    "igtv_videos": igtv_videos,
-                    "n_tagged": tagged,
-                    "has_highlights": has_highlights
-                }, file)
+                json.dump(scraped_data, file)
                 file.close()
                 click.echo("File Created, name: '%s_user.json'" % str(value))
             else:
                 file = open(value+"_user.txt", "w+", encoding="utf-8")
                 file.write("User ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nTags following: %s \nExternal URL: %s \nIGTV videos: %s \nTimes user was tagged: %s \nHas highlights: %s" % (
-                    str(user_id), username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified), str(tags_following), external_url, str(igtv_videos), str(tagged), str(has_highlights)))
+                    str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["tags_following"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["n_tagged"]), str(scraped_data["has_highlights"])))
                 file.close()
                 click.echo("File Created, name: '%s_user.txt'" % str(value))
         else:
             click.echo("User ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nTags following: %s \nExternal URL: %s \nIGTV videos: %s \nTimes user was tagged: %s \nHas highlights: %s" % (
-                str(user_id), username, full_name, profile_pic_url, bio, str(uploads), str(followers), str(following), str(is_private), str(is_verified), str(tags_following), external_url, str(igtv_videos), str(tagged), str(has_highlights)))
+                    str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["tags_following"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["n_tagged"]), str(scraped_data["has_highlights"])))
             click.echo('Done!')
     except:
         click.echo(
@@ -189,49 +176,40 @@ def getuserposts(username, create_file, file_type):
         for post in posts:
             counter = counter + 1
             node = post["node"]
-            # Collecting necessary data
-            post_id = node["id"]
+            # Collecting necessary data    
             try:
                 caption = node["edge_media_to_caption"]["edges"][0]["node"]["text"]
             except:
                 caption = ""
-            shortcode = node["shortcode"]
-            ncomments = node["edge_media_to_comment"]["count"]
-            comments_disabled = node["comments_disabled"]
-            time = str(datetime.fromtimestamp(node["taken_at_timestamp"]))
-            height = node["dimensions"]["height"]
-            width = node["dimensions"]["width"]
-            display_url = node["display_url"]
-            nlikes = node["edge_liked_by"]["count"]
             try:
                 location = node["location"]["name"]
             except:
                 location = "No Location"
-            is_video = node["is_video"]
+            scraped_data = {
+                "id": counter,
+                "post_id": node["id"],
+                "shortcode": node["shortcode"],
+                "display_url": node["display_url"],
+                "height": node["dimensions"]["height"],
+                "width": node["dimensions"]["width"],
+                "caption": caption,
+                "time": str(datetime.fromtimestamp(node["taken_at_timestamp"])),
+                "n_likes": node["edge_liked_by"]["count"],
+                "comments_disabled": node["comments_disabled"],
+                "n_comments": node["edge_media_to_comment"]["count"],
+                "location": location,
+                "is_video": node["is_video"]
+            }     
             if(create_file == "true"):
                 if(file_type == "json"):
                     # If the file type is json then appending the data to json_data array instead of writing it to the file right away
-                    json_data.append({
-                        "id": counter,
-                        "post_id": post_id,
-                        "shortcode": shortcode,
-                        "display_url": display_url,
-                        "height": height,
-                        "width": width,
-                        "caption": caption,
-                        "time": time,
-                        "nlikes": nlikes,
-                        "comments_disabled": comments_disabled,
-                        "ncomments": ncomments,
-                        "location": location,
-                        "is_video": is_video
-                    })
+                    json_data.append(scraped_data)
                 else:
                     file.write("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nDisplay URL: %s \nImage Height: %s \nImage Width: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nComments Disabled: %s \nNumber of comments: %s \nLocation: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                        str(counter), str(post_id), str(shortcode), str(display_url), str(height), str(width), str(caption), str(time), str(nlikes), str(comments_disabled), str(ncomments), str(location), str(is_video)))
+                        str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["display_url"]), str(scraped_data["height"]), str(scraped_data["width"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["comments_disabled"]), str(scraped_data["n_comments"]), str(scraped_data["location"]), str(scraped_data["is_video"])))
             else:
                 click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nDisplay URL: %s \nImage Height: %s \nImage Width: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nComments Disabled: %s \nNumber of comments: %s \nLocation: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                    counter, post_id, shortcode, display_url, height, width, caption, time, nlikes, comments_disabled, ncomments, location, is_video))
+                        str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["display_url"]), str(scraped_data["height"]), str(scraped_data["width"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["comments_disabled"]), str(scraped_data["n_comments"]), str(scraped_data["location"]), str(scraped_data["is_video"])))
         if(create_file == "true"):
             # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
