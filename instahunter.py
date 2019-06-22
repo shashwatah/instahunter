@@ -227,6 +227,7 @@ def getuserposts(username, create_file, file_type):
 
 @click.command()
 @click.option('-query', prompt="Query", help="Search Term")
+@click.option('-filter', default= "none", help = "none/users/hashtags")
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def search(query, create_file, file_type):
@@ -235,7 +236,7 @@ def search(query, create_file, file_type):
         req = requests.get(api_url)
         data = req.json()
         file = open("data.json", "w+")
-        json.dump(data, file)
+        json.dump(data["hashtags"], file)
         file.close()
         click.echo("File Created, name: data.json")
     except:
