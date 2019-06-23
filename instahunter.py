@@ -6,7 +6,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.4"""
+    """Made by KSSBro | v1.5"""
 
 
 @click.command()
@@ -58,7 +58,7 @@ def getposts(tag, create_file, file_type):
                         str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["owner_id"]), str(scraped_data["display_url"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["n_comments"]), str(scraped_data["is_video"])))
             else:
                 click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                        counter, scraped_data["post_id"], scraped_data["shortcode"], scraped_data["owner_id"], scraped_data["display_url"], scraped_data["caption"], scraped_data["time"], scraped_data["n_likes"], scraped_data["n_comments"], scraped_data["is_video"]))
+                    counter, scraped_data["post_id"], scraped_data["shortcode"], scraped_data["owner_id"], scraped_data["display_url"], scraped_data["caption"], scraped_data["time"], scraped_data["n_likes"], scraped_data["n_comments"], scraped_data["is_video"]))
         if(create_file == "true"):
             # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
@@ -146,7 +146,7 @@ def getuser(via, value, create_file, file_type):
                 click.echo("File Created, name: '%s_user.txt'" % str(value))
         else:
             click.echo("User ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nTags following: %s \nExternal URL: %s \nIGTV videos: %s \nTimes user was tagged: %s \nHas highlights: %s" % (
-                    str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["tags_following"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["n_tagged"]), str(scraped_data["has_highlights"])))
+                str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["tags_following"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["n_tagged"]), str(scraped_data["has_highlights"])))
             click.echo('Done!')
     except:
         click.echo(
@@ -176,7 +176,7 @@ def getuserposts(username, create_file, file_type):
         for post in posts:
             counter = counter + 1
             node = post["node"]
-            # Collecting necessary data    
+            # Collecting necessary data
             try:
                 caption = node["edge_media_to_caption"]["edges"][0]["node"]["text"]
             except:
@@ -199,7 +199,7 @@ def getuserposts(username, create_file, file_type):
                 "n_comments": node["edge_media_to_comment"]["count"],
                 "location": location,
                 "is_video": node["is_video"]
-            }     
+            }
             if(create_file == "true"):
                 if(file_type == "json"):
                     # If the file type is json then appending the data to json_data array instead of writing it to the file right away
@@ -209,7 +209,7 @@ def getuserposts(username, create_file, file_type):
                         str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["display_url"]), str(scraped_data["height"]), str(scraped_data["width"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["comments_disabled"]), str(scraped_data["n_comments"]), str(scraped_data["location"]), str(scraped_data["is_video"])))
             else:
                 click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nDisplay URL: %s \nImage Height: %s \nImage Width: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nComments Disabled: %s \nNumber of comments: %s \nLocation: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
-                        str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["display_url"]), str(scraped_data["height"]), str(scraped_data["width"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["comments_disabled"]), str(scraped_data["n_comments"]), str(scraped_data["location"]), str(scraped_data["is_video"])))
+                    str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["display_url"]), str(scraped_data["height"]), str(scraped_data["width"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["comments_disabled"]), str(scraped_data["n_comments"]), str(scraped_data["location"]), str(scraped_data["is_video"])))
         if(create_file == "true"):
             # Closing the file and dumping the data before closing if the file type is json
             if(file_type == "json"):
@@ -226,19 +226,59 @@ def getuserposts(username, create_file, file_type):
 
 
 @click.command()
-@click.option('-query', prompt="Query", help="Search Term")
-@click.option('-filter', default= "none", help = "none/users/hashtags")
+@click.option('-query', prompt="Query", help="The term you want to search users with")
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def search(query, create_file, file_type):
+    """This command searches for users on instagram"""
     try:
+        if(create_file == "true"):
+            if(file_type == "json"):
+                file = open(query+"_users.json", "w+")
+                json_data = []
+            else:
+                file = open(query+"_users.text",
+                            "w+", encoding="utf-8")
+        counter = 0
         api_url = "https://www.instagram.com/web/search/topsearch/?query=$%s" % query
         req = requests.get(api_url)
         data = req.json()
-        file = open("data.json", "w+")
-        json.dump(data["hashtags"], file)
-        file.close()
-        click.echo("File Created, name: data.json")
+        users = data["users"]
+        for user in users:
+            counter = counter + 1
+            scraped_data = {
+                "id": counter,
+                "user_id": user["user"]["pk"],
+                "username": user["user"]["username"],
+                "full_name": user["user"]["full_name"],
+                "profile_pic_url": user["user"]["profile_pic_url"],
+                "is_private": user["user"]["is_private"],
+                "is_verified": user["user"]["is_verified"],
+                "n_followers": user["user"]["follower_count"],
+                "n_followers_in_words": user["user"]["byline"]
+            }
+            if(create_file == "true"):
+                # If the file type is json then appending the data to json_data array instead of writing it to the file right away
+                if(file_type == "json"):
+                    json_data.append(scraped_data)
+                else:
+                    file.write("###############################\nID: %s \nUser ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nPrivate ID: %s \nVerified ID: %s \nFollowers: %s \nFollowers in words: %s \n###############################\n\n\n\n\n" % (str(counter), str(
+                        scraped_data["user_id"]), str(scraped_data["username"]), str(scraped_data["full_name"]), str(scraped_data["profile_pic_url"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["n_followers"]), str(scraped_data["n_followers_in_words"])))
+            else:
+                click.echo("###############################\nID: %s \nUser ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nPrivate ID: %s \nVerified ID: %s \nFollowers: %s \nFollowers in words: %s \n###############################\n\n\n\n\n" % (str(counter), str(
+                    scraped_data["user_id"]), str(scraped_data["username"]), str(scraped_data["full_name"]), str(scraped_data["profile_pic_url"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), str(scraped_data["n_followers"]), str(scraped_data["n_followers_in_words"])))
+        if(create_file == "true"):
+            # Closing the file and dumping the data before closing if the file type is json
+            if(file_type == "json"):
+                json.dump(json_data, file)
+                click.echo("File Created, name: '%s_users.json'" %
+                           query)
+            else:
+                click.echo("File Created, name: '%s_users.txt'" %
+                           query)
+            file.close()
+        else:
+            click.echo("Done!")
     except:
         click.echo(
             "Couldn't retrieve data, One of the following was the issue: \n1. Your query was wrong \n2. Instagram servers did not respond \n3. There is a problem with your internet connection")
