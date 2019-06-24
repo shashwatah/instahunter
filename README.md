@@ -77,6 +77,14 @@ Use the command **getuserposts** and option **-username** to get posts.
 instahunter getuserposts -username *username*
 ```
 
+#### Searching for Users
+
+Use the command **search** and option **-query** to search for users.
+
+```
+instahunter search -query *query*
+```
+
 > All the above commands will display data in the terminal itself.
 
 #### Creating a file with the data
