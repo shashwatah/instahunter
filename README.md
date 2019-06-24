@@ -102,7 +102,7 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release
 
-v1.4 has been released.
+v1.5 has been released.<br/>
 The executable is available in the release section.
 
 ## Built with
