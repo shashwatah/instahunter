@@ -14,7 +14,7 @@ def cli():
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getposts(tag, create_file, file_type):
-    """This command will fetch recent public posts with a Hashtag"""
+    """This command will fetch top posts with a Hashtag"""
     try:
         # Creating file if required, creating array json_data to store data if the file type is json
         if(create_file == "true"):
@@ -72,6 +72,71 @@ def getposts(tag, create_file, file_type):
     except:
         click.echo(
             "Couldn't retrieve data, One of the following was the issue: \n1. Your query was wrong \n2. Instagram servers did not respond \n3. There is a problem with your internet connection")
+
+@click.command()
+@click.option('-tag', prompt="Hashtag", help="The hashtag you want to search the posts with")
+@click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
+@click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
+def gettopposts(tag, create_file, file_type):
+    """This command will fetch recent public posts with a Hashtag"""
+    try:
+        # Creating file if required, creating array json_data to store data if the file type is json
+        if(create_file == "true"):
+            if(file_type == "json"):
+                file = open(tag+"_posts.json", "w+")
+                json_data = []
+            else:
+                file = open(tag+"_posts.txt", "w+", encoding="utf-8")
+        counter = 0
+        api_url = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
+        req = requests.get(url=api_url)
+        data = req.json()
+        edges = data["graphql"]["hashtag"]["edge_hashtag_to_top_posts"]["edges"]
+        # Looping through 'edges' in the data acquired
+        for edge in edges:
+            counter = counter + 1
+            # Collecting necessary data from each edge
+            try:
+                caption = edge["node"]["edge_media_to_caption"]["edges"][0]["node"]["text"]
+            except:
+                caption = "No Caption"
+            scraped_data = {
+                "id": counter,
+                "post_id": edge["node"]["id"],
+                "shortcode": edge["node"]["shortcode"],
+                "owner_id": edge["node"]["owner"]["id"],
+                "display_url": edge["node"]["display_url"],
+                "caption": caption,
+                "time": str(datetime.fromtimestamp(
+                    edge["node"]["taken_at_timestamp"])),
+                "n_likes": edge["node"]["edge_liked_by"]["count"],
+                "n_comments": edge["node"]["edge_media_to_comment"]["count"],
+                "is_video": edge["node"]["is_video"]
+            }
+            if(create_file == "true"):
+                # If the file type is json then appending the data to json_data array instead of writing it to the file right away
+                if(file_type == "json"):
+                    json_data.append(scraped_data)
+                else:
+                    file.write("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
+                        str(counter), str(scraped_data["post_id"]), str(scraped_data["shortcode"]), str(scraped_data["owner_id"]), str(scraped_data["display_url"]), str(scraped_data["caption"]), str(scraped_data["time"]), str(scraped_data["n_likes"]), str(scraped_data["n_comments"]), str(scraped_data["is_video"])))
+            else:
+                click.echo("###############################\nID: %s \nPost ID: %s \nShortcode: %s \nOwner ID: %s \nDisplay URL: %s \nCaption: %s \nTime: %s \nNumber of likes: %s \nNumber of comments: %s \nIs Video: %s \n###############################\n\n\n\n\n" % (
+                    counter, scraped_data["post_id"], scraped_data["shortcode"], scraped_data["owner_id"], scraped_data["display_url"], scraped_data["caption"], scraped_data["time"], scraped_data["n_likes"], scraped_data["n_comments"], scraped_data["is_video"]))
+        if(create_file == "true"):
+            # Closing the file and dumping the data before closing if the file type is json
+            if(file_type == "json"):
+                json.dump(json_data, file)
+                click.echo("File Created, name: '%s_posts.json'" % tag)
+            else:
+                click.echo("File Created, name: '%s_posts.txt" % tag)
+            file.close()
+        else:
+            click.echo("Done!")
+    except:
+        click.echo(
+            "Couldn't retrieve data, One of the following was the issue: \n1. Your query was wrong \n2. Instagram servers did not respond \n3. There is a problem with your internet connection")
+
 
 
 @click.command()
@@ -285,6 +350,7 @@ def search(query, create_file, file_type):
 
 
 cli.add_command(getposts)
+cli.add_command(gettopposts)
 cli.add_command(getuser)
 cli.add_command(getuserposts)
 cli.add_command(search)
