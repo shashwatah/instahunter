@@ -6,7 +6,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.5"""
+    """Made by KSSBro | v1.5.1 """
 
 
 @click.command()
@@ -14,7 +14,7 @@ def cli():
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def getposts(tag, create_file, file_type):
-    """This command will fetch top posts with a Hashtag"""
+    """This command will fetch recent public posts with a Hashtag"""
     try:
         # Creating file if required, creating array json_data to store data if the file type is json
         if(create_file == "true"):
@@ -78,7 +78,7 @@ def getposts(tag, create_file, file_type):
 @click.option('-create-file', default="false", help="true: Create a file with the data | false: Will not create a file, false is default")
 @click.option('--file-type', default="text", help="json: Create a json file | text: Create a text file, text is default")
 def gettopposts(tag, create_file, file_type):
-    """This command will fetch recent public posts with a Hashtag"""
+    """This command will fetch top posts with a Hashtag"""
     try:
         # Creating file if required, creating array json_data to store data if the file type is json
         if(create_file == "true"):
