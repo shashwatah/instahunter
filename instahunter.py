@@ -6,7 +6,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.5.1 """
+    """Made by KSSBro | v1.6"""
 
 
 @click.command()
