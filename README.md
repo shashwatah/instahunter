@@ -50,10 +50,15 @@ instahunter getposts --help
 
 #### Getting Posts
 
-Use the command **getposts** and option **-tag** to search for posts.
+Use the command **getposts** to get posts.
+
+Options:
+
+- `-tag`: tag you want to fetch posts with 
+- `--post-type` : latest(default) - fetch latest posts, top - fetch top posts
 
 ```
-instahuter getposts -tag *the_hashtag_you_want_to_search_posts_for*
+instahuter getposts -tag *hashtag* --post-type *latest or top*
 ```
 
 #### Getting User Data
@@ -62,11 +67,10 @@ Use the command **getuser** to get user data.
 
 Options:
 
-- `-via`: username(default) - fetch data with username, id - fetch date with user id
-- `--value` : username or id you want to fetch data with, depending upon your choice in **-via**
+- `-username`: username you want to fetch user data with
 
 ```
-instahunter getuser -via *username or id* --value *value*
+instahunter getuser -username *username*
 ```
 
 #### Getting User Posts
