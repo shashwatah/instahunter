@@ -6,7 +6,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.6"""
+    """Made by KSSBro | v1.6.1"""
 
 
 @click.command()
@@ -114,16 +114,16 @@ def getuser(username, create_file, file_type):
         }
         if(create_file == "true"):
             if(file_type == "json"):
-                file = open(value+"_user.json", "w+")
+                file = open(username+"_user.json", "w+")
                 json.dump(scraped_data, file)
                 file.close()
-                click.echo("File Created, name: '%s_user.json'" % str(value))
+                click.echo("File Created, name: '%s_user.json'" % str(username))
             else:
-                file = open(value+"_user.txt", "w+", encoding="utf-8")
+                file = open(username+"_user.txt", "w+", encoding="utf-8")
                 file.write("User ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nExternal URL: %s \nIGTV videos: %s \nHas highlights: %s" % (
                     str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["has_highlights"])))
                 file.close()
-                click.echo("File Created, name: '%s_user.txt'" % str(value))
+                click.echo("File Created, name: '%s_user.txt'" % str(username))
         else:
             click.echo("User ID: %s \nUsername: %s \nFull Name: %s \nProfile Pic URL: %s \nBio: %s \nUploads: %s \nFollowers: %s \nFollowing: %s \nPrivate ID: %s \nVerified ID: %s \nExternal URL: %s \nIGTV videos: %s \nHas highlights: %s" % (
                 str(scraped_data["user_id"]), scraped_data["username"], scraped_data["full_name"], scraped_data["profile_pic_url"], scraped_data["bio"], str(scraped_data["n_uploads"]), str(scraped_data["n_followers"]), str(scraped_data["n_following"]), str(scraped_data["is_private"]), str(scraped_data["is_verified"]), scraped_data["external_url"], str(scraped_data["igtv_videos"]), str(scraped_data["has_highlights"])))

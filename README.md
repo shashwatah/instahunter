@@ -32,10 +32,12 @@ Running from the source:
 python instahunter.py
 ```
 
-Running from the executable:
+Create an executable using pyinstaller:
 
 ```
-instahunter
+pip install pyinstaller
+
+pyinstaller instahunter.py --onefile
 ```
 
 To get help use **--help**:
@@ -106,7 +108,7 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release
 
-v1.5 has been released.<br/>
+v1.6.1 has been released.<br/>
 The executable is available in the release section.
 
 ## Built with
