@@ -40,6 +40,8 @@ pip install pyinstaller
 pyinstaller instahunter.py --onefile
 ```
 
+> To download executable click here: [Instahunter](https://kssbro.github.io/instahunter/public/bin/instahunter.exe)
+
 To get help use **--help**:
 
 ```
