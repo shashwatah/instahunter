@@ -1,4 +1,4 @@
-<img alt="Instahunter" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/main_logo_blue.png" height="100">
+<img alt="Instahunter" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/logo.png" height="100">
 
 # Instahunter
 
