@@ -116,8 +116,8 @@ Click here: [Instahunter](https://kssbro.github.io/instahunter/public/bin/instah
 ## Libraries
 
 - [Click](https://click.palletsprojects.com/en/7.x/) was used to make the CLI
-- [Pyinstaller](https://www.pyinstaller.org/)(Executable) was used to build the executable
-- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website of Instahunter](https://kssbro.github.io/instahunter) to make the animated command line.
+- [Pyinstaller](https://www.pyinstaller.org/) was used to build the executable
+- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website](https://kssbro.github.io/instahunter) to display the output 
  
 ## Contributing
 
