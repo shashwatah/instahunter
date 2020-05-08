@@ -1,3 +1,12 @@
+'''
+    instahunter.py
+
+    Author: KSSBro
+    Copyright:  Copyright © 2019, KSSBro
+    License: MIT
+    Version: 1.6.1
+'''
+
 import click
 import requests
 import json

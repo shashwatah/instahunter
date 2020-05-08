@@ -2,7 +2,7 @@
 
 # Instahunter
 
-Instahunter is a CLI app that can fetch posts and user data from Instagram's frontend API.
+[Instahunter](https://kssbro.github.io/instahunter) is a CLI app that can fetch posts and user data from Instagram's frontend API.
 
 ## Getting Started
 
@@ -30,14 +30,6 @@ Running from the source:
 
 ```
 python instahunter.py
-```
-
-Create an executable using pyinstaller:
-
-```
-pip install pyinstaller
-
-pyinstaller instahunter.py --onefile
 ```
 
 To get help use **--help**:
@@ -106,21 +98,27 @@ Options:
 instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *json or text*
 ```
 
-## Release
+## Release & Changelog
 
-v1.6.1 has been released.<br/>
-The executable is available in the release section.
+Current Version: v1.6.1
+
+Changelog: 
+- Command **gettopposts** removed
+- Command **getposts** has ***-post-type*** option now to fetch latest or top posts
+- Option ***-via*** removed from Command **getuser** (Deprecated endpoint)
+- Some data removed from Command **search** 
+- Minor bug fix
 
 ## Download
 
 Click here: [Instahunter](https://kssbro.github.io/instahunter/public/bin/instahunter.exe)
 
-## Built with
+## Libraries
 
-- [Python](https://www.python.org/)
-- [Click](https://click.palletsprojects.com/en/7.x/)
-- [Pyinstaller](https://www.pyinstaller.org/)(Executable)
-
+- [Click](https://click.palletsprojects.com/en/7.x/) was used to make the CLI
+- [Pyinstaller](https://www.pyinstaller.org/)(Executable) was used to build the executable
+- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website of Instahunter](https://kssbro.github.io/instahunter) to make the animated command line.
+ 
 ## Contributing
 
 Fork the repository and open a pull request to contribute.
