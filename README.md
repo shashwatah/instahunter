@@ -13,7 +13,7 @@ Commands Insthaunter currently supports:
 - **search**: Search for users on Instagram
 
 <br/>
-<img alt="Screenshot" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/screenshot.jpg" height="100">
+<img alt="Screenshot" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/screenshot.jpg">
 
 ## Prerequisites
 
