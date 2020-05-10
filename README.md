@@ -12,6 +12,9 @@ Commands Insthaunter currently supports:
 - **getuserposts**: Fetch recent public posts of a user with a Username
 - **search**: Search for users on Instagram
 
+<br/>
+<img alt="Screenshot" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/screenshot.png" height="100">
+
 ## Prerequisites
 
 - Git is need to clone the repository on your machine.
