@@ -6,6 +6,7 @@
 
 [Instahunter](https://kssbro.github.io/instahunter) is an Open-Source CLI app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/KSSBro/orion).
 <br/>
+<br/>
 Commands Insthaunter currently supports:
 - **getposts**: Fetch latest or top public posts with a Hashtag
 - **getuser**: Fetch public user data with a Username
@@ -17,7 +18,6 @@ Commands Insthaunter currently supports:
 - Git is need to clone the repository on your machine.
 - pip is needed to install packages.
 - Python is needed to run the app.
-- 
 
 ### Ubuntu
 
