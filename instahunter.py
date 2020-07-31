@@ -1,10 +1,10 @@
 '''
     instahunter.py
 
-    Author: KSSBro
-    Copyright:  Copyright © 2019, KSSBro
+    Author: Araekiel
+    Copyright:  Copyright © 2019, Araekiel
     License: MIT
-    Version: 1.6.1
+    Version: 1.6.2
 '''
 
 import click
@@ -15,7 +15,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by KSSBro | v1.6.1"""
+    """Made by Araekiel | v1.6.2"""
 
 
 @click.command()

@@ -1,9 +1,9 @@
-<img alt="Instahunter" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/logo.png" height="100">
+<img alt="Instahunter" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/logo.png" height="100">
 
 # Instahunter
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v1.6.1-blue)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
 
-[Instahunter](https://kssbro.github.io/instahunter) is an Open-Source CLI app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/KSSBro/orion).
+[Instahunter](https://araekiel.github.io/instahunter) is an Open-Source CLI app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/Araekiel/orion).
 <br/>
 <br/>
 Commands Insthaunter currently supports:
@@ -13,7 +13,7 @@ Commands Insthaunter currently supports:
 - **search**: Search for users on Instagram
 
 <br/>
-<img alt="Screenshot" src="https://raw.githubusercontent.com/KSSBro/instahunter/gh-pages/public/images/screenshot.jpg">
+<img alt="Screenshot" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/screenshot.jpg">
 
 ## Prerequisites
 
@@ -48,7 +48,7 @@ To run the app from source - [Git](https://git-scm.com/) is needed to clone the 
 Clone the repo and cd into the directory: 
 
 ```
-$ git clone https://github.com/KSSBro/instahunter.git
+$ git clone https://github.com/Araekiel/instahunter.git
 $ cd instahunter
 ```
 
@@ -153,13 +153,13 @@ Changelog:
 
 ## Download
 
-Click here: [Instahunter](https://kssbro.github.io/instahunter/public/bin/instahunter.exe)
+Click here: [Instahunter](https://araekiel.github.io/instahunter/public/bin/instahunter.exe)
 
 ## Libraries
 
 - [Click](https://click.palletsprojects.com/en/7.x/) was used to make the CLI
 - [Pyinstaller](https://www.pyinstaller.org/) was used to build the executable
-- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website](https://kssbro.github.io/instahunter) to display the output 
+- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website](https://araekiel.github.io/instahunter) to display the output 
  
 ## Contribution
 
@@ -168,7 +168,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## Authors
 
-- **KSSBro** - [Github](https://github.com/KSSBro)
+- **Araekiel** - [Github](https://github.com/Araekiel)
 
 ## License
 
