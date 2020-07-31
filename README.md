@@ -3,7 +3,7 @@
 # Instahunter
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v1.6.1-blue)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
 
-[Instahunter](https://araekiel.github.io/instahunter) is an Open-Source CLI app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/Araekiel/orion).
+[Instahunter](https://araekiel.github.io/instahunter) is a CLI OSINT app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/Araekiel/orion).
 <br/>
 <br/>
 Commands Insthaunter currently supports:
