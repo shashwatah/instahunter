@@ -25,7 +25,7 @@ Commands Insthaunter currently supports:
 
 Install git, python and pip on your machine running Ubuntu:
 
-```
+```bash
 $ sudo apt-get install git-core
 $ sudo apt install python3.7
 $ sudo apt install python3-pip
@@ -47,7 +47,7 @@ To run the app from source - [Git](https://git-scm.com/) is needed to clone the 
 
 Clone the repo and cd into the directory: 
 
-```
+```bash
 $ git clone https://github.com/Araekiel/instahunter.git
 $ cd instahunter
 ```
@@ -55,12 +55,12 @@ $ cd instahunter
 Instahunter was built with click package and needs it to run. Install click:
 
 Windows:
-```
+```bash
 pip install click
 ```
 
 Ubuntu: 
-```
+```bash
 $ pip3 install click
 ```
 
@@ -68,17 +68,17 @@ $ pip3 install click
 
 Running from the source:
 
-```
+```bash
 $ python instahunter.py
 ```
 
 To get help use **--help**:
 
-```
+```bash
 instahunter --help
 ```
 
-```
+```bash
 instahunter getposts --help
 ```
 
@@ -91,7 +91,7 @@ Options:
 - `-tag`: tag you want to fetch posts with 
 - `--post-type` : latest(default) - fetch latest posts, top - fetch top posts
 
-```
+```bash
 instahuter getposts -tag *hashtag* --post-type *latest or top*
 ```
 
@@ -103,7 +103,7 @@ Options:
 
 - `-username`: username you want to fetch user data with
 
-```
+```bash
 instahunter getuser -username *username*
 ```
 
@@ -111,7 +111,7 @@ instahunter getuser -username *username*
 
 Use the command **getuserposts** and option **-username** to get posts.
 
-```
+```bash
 instahunter getuserposts -username *username*
 ```
 
@@ -119,7 +119,7 @@ instahunter getuserposts -username *username*
 
 Use the command **search** and option **-query** to search for users.
 
-```
+```bash
 instahunter search -query *query*
 ```
 
@@ -134,7 +134,7 @@ Options:
 - `-create-file`: true - will create a file with the data, false(default) - won't create a file
 - `--file-type` : json - will create a json file, text(default) - will create a text file
 
-```
+```bash
 instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *json or text*
 ```
 
