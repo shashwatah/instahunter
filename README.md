@@ -140,7 +140,7 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release & Changelog
 
-Latest Release: v1.6.1
+Latest Release: v1.6.2
 
 Changelog: 
 - Command **gettopposts** removed
