@@ -161,7 +161,7 @@ v1.6 Changelog:
 
 ## Download
 
-Click here: [Instahunter](https://araekiel.github.io/instahunter/public/bin/instahunter.exe)
+Click here: [Instahunter](https://github.com/Araekiel/instahunter/releases/download/v1.6.3/instahunter.exe)
 
 ## Libraries
 
