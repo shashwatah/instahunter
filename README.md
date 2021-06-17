@@ -1,7 +1,7 @@
 <img alt="Instahunter" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/logo.png" height="100">
 
 # Instahunter
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v1.6.2-blue)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v1.6.3-blue)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
 
 [Instahunter](https://araekiel.github.io/instahunter) is a CLI OSINT app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/Araekiel/orion).
 <br/>
@@ -140,9 +140,11 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release & Changelog
 
-Latest Release: v1.6.2
+Latest Release: 
+v1.6.3 Changelog
+- Added headers to counter Instagram's rate limiting.
 
-Changelog: 
+v1.6.2 Changelog: 
 - Command **gettopposts** removed
 - Command **getposts** has ***-post-type*** option now to fetch latest or top posts
 - Option ***-via*** removed from Command **getuser** (Deprecated endpoint)
