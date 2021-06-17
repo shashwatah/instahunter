@@ -144,7 +144,13 @@ Latest Release:
 v1.6.3 Changelog
 - Added headers to counter Instagram's rate limiting.
 
-v1.6.2 Changelog: 
+v1.6.1 Changelog: 
+- Updated Author name  
+
+v1.6.1 Changelog: 
+- Minor bug fix
+
+v1.6 Changelog: 
 - Command **gettopposts** removed
 - Command **getposts** has ***-post-type*** option now to fetch latest or top posts
 - Option ***-via*** removed from Command **getuser** (Deprecated endpoint)
