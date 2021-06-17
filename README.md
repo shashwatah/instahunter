@@ -140,8 +140,7 @@ instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *js
 
 ## Release & Changelog
 
-#### Latest Release: 
-#### v1.6.3 Changelog
+#### v1.6.3(Latest) Changelog:
 - Added headers to counter Instagram's rate limiting.
 
 #### v1.6.1 Changelog: 
