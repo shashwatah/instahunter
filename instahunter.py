@@ -4,7 +4,7 @@
     Author: Araekiel
     Copyright:  Copyright © 2019, Araekiel
     License: MIT
-    Version: 1.6.2
+    Version: 1.6.3
 '''
 
 import click
@@ -15,7 +15,7 @@ from datetime import datetime
 
 @click.group()
 def cli():
-    """Made by Araekiel | v1.6.2"""
+    """Made by Araekiel | v1.6.3"""
 
 headers = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0"}
 
