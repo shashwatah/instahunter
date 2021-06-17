@@ -17,6 +17,7 @@ from datetime import datetime
 def cli():
     """Made by Araekiel | v1.6.2"""
 
+headers = { "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0"}
 
 @click.command()
 @click.option('-tag', prompt="Hashtag", help="The hashtag you want to search the posts with")
@@ -35,7 +36,7 @@ def getposts(tag, post_type, create_file, file_type):
                 file = open(tag+"_posts.txt", "w+", encoding="utf-8")
         counter = 0
         api_url = "https://www.instagram.com/explore/tags/%s/?__a=1" % tag
-        req = requests.get(url=api_url)
+        req = requests.get(url=api_url, headers=headers)
         data = req.json()
         
         if(post_type == "top"):
@@ -98,7 +99,7 @@ def getuser(username, create_file, file_type):
     api_url = "https://www.instagram.com/%s/?__a=1" % username
 
     try:
-        req = requests.get(url=api_url)
+        req = requests.get(url=api_url, headers=headers)
         data = req.json()
         # Collecting necessary data
         user = data["graphql"]["user"]
@@ -158,7 +159,7 @@ def getuserposts(username, create_file, file_type):
                 file = open(username+"_posts.txt", "w+", encoding="utf-8")
         counter = 0
         api_url = "https://www.instagram.com/%s/?__a=1" % username
-        req = requests.get(url=api_url)
+        req = requests.get(url=api_url, headers=headers)
         data = req.json()
         posts = data["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"]
         # Looping through posts
@@ -230,7 +231,7 @@ def search(query, create_file, file_type):
                             "w+", encoding="utf-8")
         counter = 0
         api_url = "https://www.instagram.com/web/search/topsearch/?query=%s" % query
-        req = requests.get(api_url)
+        req = requests.get(api_url, headers=headers)
         data = req.json()
         users = data["users"]
         for user in users:
