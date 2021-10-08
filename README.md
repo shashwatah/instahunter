@@ -12,6 +12,9 @@ Commands Insthaunter currently supports:
 - **getuserposts**: Fetch recent public posts of a user with a Username
 - **search**: Search for users on Instagram
 
+#### Update:
+Instagram has added an auth barrier to its frontend API, and instahunter can't fetch any data anymore. This happened right when I was about to do a complete code refactor and replace click with a CUI built with pyInquirer and pyfiglet. I'm archiving this repo. 
+
 <br/>
 <img alt="Screenshot" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/screenshot.jpg">
 
