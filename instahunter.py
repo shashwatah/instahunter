@@ -1,8 +1,6 @@
-from __future__ import print_function, unicode_literals
 import os
 
 from PyInquirer import prompt, Separator, style_from_dict, Token
-from pprint import pprint
 
 from termcolor import cprint
 import pyfiglet
@@ -35,4 +33,4 @@ questions = [
 ]
 
 answers = prompt(questions, style=pi_custom_style)
-pprint(answers)
+print(answers)
