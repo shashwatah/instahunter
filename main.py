@@ -175,6 +175,25 @@ questions = [
             'User Posts',
             'Search Results'
         ]
+    },
+    {
+        'type': 'input',
+        'name': 'query',
+        'message': 'Query:'
+    },
+    {
+        'type': 'list',
+        'name': 'querysubtype',
+        'message': 'What kind of posts are you looking for?',
+        'choices': [
+            'Top',
+            'Latest'
+        ]
+    },
+    {
+        'type': 'confirm',
+        'name': 'fileconfirm',
+        'message': 'Do you want to output the results to a JSON file?'
     }
 ]
 
