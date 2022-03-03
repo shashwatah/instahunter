@@ -140,11 +140,33 @@ def process_user_posts(raw_data):
         processed_data.append(processed_post_node_data)
 
 
-def get_search_results():
-    pass
+def get_search_results(query):
+    api_url = "https://www.instagram.com/web/search/topsearch/?query=%s" % query
+    request = requests.get(api_url, headers=headers)
+    raw_data = request.json()
 
-def process_search_results():
-    pass
+    return process_search_results(raw_data)
+
+def process_search_results(raw_data):
+    processed_data = []
+    counter = 0
+
+    users = raw_data["users"]
+    
+    for user in users:
+        counter = counter + 1
+
+        processed_data.append({
+            "id": counter,
+            "user_id": user["user"]["pk"],
+            "username": user["user"]["username"],
+            "full_name": user["user"]["full_name"],
+            "profile_pic_url": user["user"]["profile_pic_url"],
+            "is_private": user["user"]["is_private"],
+            "is_verified": user["user"]["is_verified"],
+        })
+
+    return processed_data
 
 instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
 cprint(instahunter_header, 'red', attrs=['blink'])
