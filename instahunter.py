@@ -1,8 +1,5 @@
-from concurrent.futures import process
 import os
-from cv2 import ORB_FAST_SCORE
 import requests 
-import json 
 from datetime import datetime
 
 from PyInquirer import prompt, Separator, style_from_dict, Token
@@ -11,13 +8,6 @@ from termcolor import cprint
 import pyfiglet
 
 os.system('color')
-
-pi_custom_style = style_from_dict({
-    Token.QuestionMark: '#673ab7 bold',
-    Token.Selected: '#cc5454',
-    Token.Pointer: '#673ab7 bold',
-    Token.Answer: '#f44336 bold',
-})
 
 headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}
 
@@ -38,14 +28,14 @@ def process_posts(raw_data, post_type):
         edges = raw_data["graphql"]["hashtag"]["edge_hashtag_to_media"]["edges"]
 
     for edge in edges:
-        counter = counter + 1
+        counter += 1
        
         try:
             caption = edge["node"]["edge_media_to_caption"]["edges"][0]["node"]["text"]
         except:
             caption = "No Caption"
 
-        processed_edge_data = {
+        processed_data.append({
             "id": counter,
             "post_id": edge["node"]["id"],
             "shortcode": edge["node"]["shortcode"],
@@ -57,9 +47,7 @@ def process_posts(raw_data, post_type):
             "n_likes": edge["node"]["edge_liked_by"]["count"],
             "n_comments": edge["node"]["edge_media_to_comment"]["count"],
             "is_video": edge["node"]["is_video"]
-        }
-
-        processed_data.append(processed_edge_data)
+        })
 
     return processed_data
 
@@ -108,7 +96,7 @@ def process_user_posts(raw_data):
     post_edges = raw_data["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"]
 
     for post in post_edges:
-        counter = counter + 1
+        counter  += 1
         post_node = post["node"]
 
         try:
@@ -121,7 +109,7 @@ def process_user_posts(raw_data):
         except:
             location = "No Location"
 
-        processed_post_node_data = {
+        processed_data.append({
             "id": counter,
             "post_id": post_node["id"],
             "shortcode": post_node["shortcode"],
@@ -135,10 +123,9 @@ def process_user_posts(raw_data):
             "n_comments": post_node["edge_media_to_comment"]["count"],
             "location": location,
             "is_video": post_node["is_video"]
-        }
+        })
 
-        processed_data.append(processed_post_node_data)
-
+    return processed_data
 
 def get_search_results(query):
     api_url = "https://www.instagram.com/web/search/topsearch/?query=%s" % query
@@ -150,11 +137,9 @@ def get_search_results(query):
 def process_search_results(raw_data):
     processed_data = []
     counter = 0
-
-    users = raw_data["users"]
     
-    for user in users:
-        counter = counter + 1
+    for user in raw_data["users"]:
+        counter += 1
 
         processed_data.append({
             "id": counter,
@@ -167,6 +152,14 @@ def process_search_results(raw_data):
         })
 
     return processed_data
+
+pi_custom_style = style_from_dict({
+    Token.QuestionMark: '#673ab7 bold',
+    Token.Selected: '#cc5454',
+    Token.Pointer: '#673ab7 bold',
+    Token.Answer: '#f44336 bold',
+})
+
 
 instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
 cprint(instahunter_header, 'red', attrs=['blink'])
@@ -187,10 +180,3 @@ questions = [
 
 answers = prompt(questions, style=pi_custom_style)
 print(answers)
-
-# api endpoints:
-# posts:      https://www.instagram.com/explore/tags/*tag*/?__a=1
-# user data:  https://www.instagram.com/*username*/?__a=1
-# user posts: https://www.instagram.com/*username*/?__a=1
-# search:     https://www.instagram.com/web/search/topsearch/?query=*query*" 
-
