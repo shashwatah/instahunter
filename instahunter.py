@@ -62,11 +62,36 @@ def process_posts(raw_data, post_type):
 
     return processed_data
 
-def get_user_data():
-    pass
+def get_user_data(username):
+    api_url = "https://www.instagram.com/%s/?__a=1" % username
+    request = requests.get(url=api_url, headers=headers)
+    raw_data = request.json()
 
-def process_user_data():
-    pass
+    return process_user_data(raw_data)
+
+def process_user_data(raw_data):
+    user_data = raw_data["graphql"]["user"]
+
+    if(user_data["highlight_reel_count"] > 0):
+        has_highlights = True
+    else:
+        has_highlights = False
+
+    return {
+        "user_id": user_data["id"],
+        "username": user_data["username"],
+        "full_name": user_data["full_name"],
+        "profile_pic_url": user_data["profile_pic_url_hd"],
+        "bio": user_data["biography"],
+        "n_uploads": user_data["edge_owner_to_timeline_media"]["count"],
+        "n_followers": user_data["edge_followed_by"]["count"],
+        "n_following": user_data["edge_follow"]["count"],
+        "is_private": user_data["is_private"],
+        "is_verified": user_data["is_verified"],
+        "external_url": user_data["external_url"],
+        "igtv_videos": user_data["edge_felix_video_timeline"]["count"],
+        "has_highlights": has_highlights
+    }
 
 def get_user_posts():
     pass
