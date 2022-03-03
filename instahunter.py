@@ -30,6 +30,7 @@ def get_posts(tag, post_type):
 
 def process_posts(raw_data, post_type):
     processed_data = []
+    counter = 0
 
     if(post_type == "top"):
         edges = raw_data["graphql"]["hashtag"]["edge_hashtag_to_top_posts"]["edges"]
@@ -90,11 +91,54 @@ def process_user_data(raw_data):
         "is_verified": user_data["is_verified"],
         "external_url": user_data["external_url"],
         "igtv_videos": user_data["edge_felix_video_timeline"]["count"],
-        "has_highlights": has_highlight
+        "has_highlights": has_highlights
     }
 
-def get_user_posts():
-    pass
+def get_user_posts(username):
+    api_url = "https://www.instagram.com/%s/?__a=1" % username
+    request = requests.get(url=api_url, headers=headers)
+    raw_data = request.json()
+
+    return process_user_posts(raw_data)
+
+def process_user_posts(raw_data):
+    processed_data = []
+    counter = 0
+
+    post_edges = raw_data["graphql"]["user"]["edge_owner_to_timeline_media"]["edges"]
+
+    for post in post_edges:
+        counter = counter + 1
+        post_node = post["node"]
+
+        try:
+            caption = post_node["edge_media_to_caption"]["edges"][0]["node"]["text"]
+        except:
+            caption = ""
+
+        try:
+            location = post_node["location"]["name"]
+        except:
+            location = "No Location"
+
+        processed_post_node_data = {
+            "id": counter,
+            "post_id": post_node["id"],
+            "shortcode": post_node["shortcode"],
+            "display_url": post_node["display_url"],
+            "height": post_node["dimensions"]["height"],
+            "width": post_node["dimensions"]["width"],
+            "caption": caption,
+            "time": str(datetime.fromtimestamp(post_node["taken_at_timestamp"])),
+            "n_likes": post_node["edge_liked_by"]["count"],
+            "comments_disabled": post_node["comments_disabled"],
+            "n_comments": post_node["edge_media_to_comment"]["count"],
+            "location": location,
+            "is_video": post_node["is_video"]
+        }
+
+        processed_data.append(processed_post_node_data)
+
 
 def get_search_results():
     pass
