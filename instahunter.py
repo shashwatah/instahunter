@@ -90,7 +90,7 @@ def process_user_data(raw_data):
         "is_verified": user_data["is_verified"],
         "external_url": user_data["external_url"],
         "igtv_videos": user_data["edge_felix_video_timeline"]["count"],
-        "has_highlights": has_highlights
+        "has_highlights": has_highlight
     }
 
 def get_user_posts():
