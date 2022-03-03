@@ -2,7 +2,7 @@ import os
 import requests 
 from datetime import datetime
 
-from PyInquirer import prompt, Separator, style_from_dict, Token
+from PyInquirer import prompt, style_from_dict, Token
 
 from termcolor import cprint
 import pyfiglet
