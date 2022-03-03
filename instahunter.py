@@ -1,4 +1,5 @@
 import os
+from cv2 import ORB_FAST_SCORE
 import requests 
 import json 
 
@@ -21,7 +22,26 @@ headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0
 instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
 cprint(instahunter_header, 'red', attrs=['blink'])
 
+def get_posts():
+    pass
 
+def process_posts():
+    pass
+
+def get_user_data():
+    pass
+
+def process_user_data():
+    pass
+
+def get_user_posts():
+    pass
+
+def get_search_results():
+    pass
+
+def process_search_results():
+    pass
 
 questions = [
     {
