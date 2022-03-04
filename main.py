@@ -1,4 +1,3 @@
-import os
 import requests 
 from datetime import datetime
 
@@ -6,8 +5,6 @@ from PyInquirer import prompt, style_from_dict, Token
 
 from termcolor import cprint
 import pyfiglet
-
-os.system('color')
 
 headers = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}
 
@@ -169,7 +166,7 @@ pi_custom_style = style_from_dict({
 
 
 instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
-cprint(instahunter_header, 'red', attrs=['blink'])
+cprint(instahunter_header, 'red')
 
 def get_post_options(answers):
     if answers['query_type'] == 'posts':
