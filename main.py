@@ -153,6 +153,13 @@ def process_search_results(raw_data):
 
     return processed_data
 
+func_dispatcher = {
+    'posts': get_posts,
+    'user_data': get_user_data,
+    'user_posts': get_user_posts,
+    'search': get_search_results
+}
+
 pi_custom_style = style_from_dict({
     Token.QuestionMark: '#673ab7 bold',
     Token.Selected: '#cc5454',
@@ -165,7 +172,7 @@ instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
 cprint(instahunter_header, 'red', attrs=['blink'])
 
 def get_post_options(answers):
-    if answers['querytype'] == 'Public Posts':
+    if answers['query_type'] == 'posts':
         return True
     else:
         return False
@@ -173,13 +180,25 @@ def get_post_options(answers):
 questions = [
     {
         'type': 'list',
-        'name': 'querytype',
+        'name': 'query_type',
         'message': 'What do you want to lookup?',
         'choices': [
-            'Public Posts',
-            'User Data',
-            'User Posts',
-            'Search Results'
+            {
+                'name': 'Public Posts',
+                'value': 'posts'
+            },
+            {
+                'name': 'User Data',
+                'value': 'user_data'
+            },
+            {
+                'name': 'User Posts',
+                'value': 'user_posts'
+            },
+            {
+                'name': 'Search Results',
+                'value': 'search'
+            }
         ]
     },
     {
@@ -189,17 +208,23 @@ questions = [
     },
     {
         'type': 'list',
-        'name': 'posttype',
+        'name': 'post_type',
         'message': 'What kind of posts are you looking for?',
         'choices': [
-            'Top',
-            'Latest'
+            {
+                'name': 'Top',
+                'value': 'top'
+            },
+            {
+                'name': 'Latest',
+                'value': 'latest'
+            }
         ],
         'when': get_post_options
     },
     {
         'type': 'confirm',
-        'name': 'fileconfirm',
+        'name': 'file_confirm',
         'message': 'Do you want to output the results to a JSON file?'
     }
 ]
@@ -207,6 +232,11 @@ questions = [
 answers = prompt(questions, style=pi_custom_style)
 
 def main_controller():
-    pass
+    if 'post_type' in answers:
+        func_dispatcher[answers['query_type']](answers['query'], answers['post_type'])
+    else:
+        func_dispatcher[answers['query_type']](answers['query'])
+
+main_controller()
 
 print(answers)
