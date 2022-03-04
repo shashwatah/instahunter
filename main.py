@@ -164,6 +164,12 @@ pi_custom_style = style_from_dict({
 instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
 cprint(instahunter_header, 'red', attrs=['blink'])
 
+def get_post_options(answers):
+    if answers['querytype'] == 'Public Posts':
+        return True
+    else:
+        return False
+
 questions = [
     {
         'type': 'list',
@@ -183,12 +189,13 @@ questions = [
     },
     {
         'type': 'list',
-        'name': 'querysubtype',
+        'name': 'posttype',
         'message': 'What kind of posts are you looking for?',
         'choices': [
             'Top',
             'Latest'
-        ]
+        ],
+        'when': get_post_options
     },
     {
         'type': 'confirm',
@@ -198,4 +205,8 @@ questions = [
 ]
 
 answers = prompt(questions, style=pi_custom_style)
+
+def main_controller():
+    pass
+
 print(answers)
