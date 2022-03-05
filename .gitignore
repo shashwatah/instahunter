@@ -1,4 +1,4 @@
 /dist
 /json
-/lib/__pycache__
-/lib/view/__pycache__
+/src/lib/__pycache__
+/src/lib/view/__pycache__
