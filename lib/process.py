@@ -1,7 +1,6 @@
 from datetime import datetime 
 
 def process_posts(raw_data, post_type):
-    print("process posts func")
     processed_data = []
     counter = 0
 
