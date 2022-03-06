@@ -114,7 +114,7 @@ def process_search_results(raw_data):
 
     return processed_data
 
-process_func_dispatcher = {
+dispatcher = {
     'posts': process_posts,
     'user_data': process_user_data,
     'user_posts': process_user_posts,

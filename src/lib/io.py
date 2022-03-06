@@ -5,7 +5,7 @@ from PyInquirer import prompt
 
 import json
 
-from .question import questions, pi_custom_style
+from lib.utils.question import questions, pi_custom_style
 
 def display_header():
     instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
