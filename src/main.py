@@ -29,10 +29,10 @@ def controller():
 
     if input['file_confirm'] == True:
         file_name = create_json_file(input['query'], processed_data)
-        display_message(f'File created, File Name: [bold red]{file_name}')
+        display_message(f'\nFile created, File Name: [bold red]{file_name}')
     else:
         display_data(processed_data)
-        display_message('Done!')
+        display_message('\nDone! :thumbs_up:')
 
 if __name__  == '__main__':
     display_header()
