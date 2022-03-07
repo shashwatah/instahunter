@@ -1,4 +1,3 @@
-from dataclasses import field
 import requests
 
 def request_raw_data(url, headers):
