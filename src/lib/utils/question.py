@@ -6,7 +6,7 @@ def get_post_options(input):
     else:
         return False
 
-questions = [
+QUESTIONS = [
     {
         'type': 'list',
         'name': 'query_type',
