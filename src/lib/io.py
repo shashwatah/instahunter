@@ -24,3 +24,10 @@ def create_json_file(query, json_data):
 def display_data(processed_data):
     formatted_str = json.dumps(processed_data, indent=4)
     print(formatted_str)
+
+def display_message(message, success=True):
+    if success == True:
+        msg_color = 'green'
+    else:
+        msg_color = 'red'
+    cprint(message, msg_color)

@@ -1,4 +1,4 @@
-from lib.io import display_header, get_input, create_json_file, display_data
+from lib.io import display_header, get_input, create_json_file, display_data, display_message
 from lib.processor import dispatcher
 from lib.utils.helpers import request_raw_data
 
@@ -14,6 +14,8 @@ API_URLS = {
 def controller():
     input = get_input()
 
+    display_message("\nFetching Data...\n")
+
     api_url = API_URLS[input['query_type']]%input['query']
     raw_data = request_raw_data(api_url, HEADERS)
 
@@ -24,10 +26,10 @@ def controller():
 
     if input['file_confirm'] == True:
         file_name = create_json_file(input['query'], processed_data)
-        print("File created, File Name: %s"%file_name)
+        display_message("File created, File Name: %s"%file_name)
     else:
         display_data(processed_data)
-        print("Done!")
+        display_message("Done!")
 
 
 if __name__  == '__main__':
