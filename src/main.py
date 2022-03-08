@@ -19,7 +19,10 @@ def controller(console):
     with console.status('[bold green]Fetching Data...') as status:
         api_url = API_URLS[input['query_type']]%input['query']
         raw_data = request_raw_data(api_url, HEADERS)
-
+        
+        if len(raw_data) == 0:
+            raise Exception("Requested returned no results")
+        
         if 'post_type' in input:
             processed_data = dispatcher[input['query_type']](raw_data, input['post_type'])
         else:
@@ -36,4 +39,10 @@ if __name__  == '__main__':
     console = Console()
 
     display_header()
-    controller(console)
+
+    try:
+        controller(console)
+    except (KeyboardInterrupt, KeyError, SystemError):
+        display_message("Bye :waving_hand:")
+    except Exception as error:
+        display_message(str(error), False)
