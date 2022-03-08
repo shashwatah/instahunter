@@ -1,4 +1,13 @@
-from PyInquirer import style_from_dict, Token
+from PyInquirer import style_from_dict, Token, Validator, ValidationError
+import regex
+
+class UsernameTagValidator(Validator):
+    def validate(self, document):
+        ok = regex.match('^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$', document.text)
+        if not ok:
+            raise ValidationError(
+                message='Please enter a valid query',
+                cursor_position=len(document.text))
 
 def get_post_options(input):
     if input['query_type'] == 'posts':
@@ -33,7 +42,8 @@ QUESTIONS = [
     {
         'type': 'input',
         'name': 'query',
-        'message': 'Query:'
+        'message': 'Query:',
+        'validate': UsernameTagValidator
     },
     {
         'type': 'list',
