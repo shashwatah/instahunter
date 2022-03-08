@@ -13,9 +13,7 @@ API_URLS = {
     'search': 'https://www.instagram.com/web/search/topsearch/?query=%s'
 }
 
-def controller():
-    console = Console()
-
+def controller(console):
     input = get_input()
 
     with console.status('[bold green]Fetching Data...') as status:
@@ -27,7 +25,7 @@ def controller():
         else:
             processed_data = dispatcher[input['query_type']](raw_data)
 
-    if input['file_confirm'] == True:
+    if input['file_confirm']:
         file_name = create_json_file(input['query'], processed_data)
         display_message(f'\nFile created, File Name: [bold red]{file_name}')
     else:
@@ -35,5 +33,7 @@ def controller():
         display_message('\nDone! :thumbs_up:')
 
 if __name__  == '__main__':
+    console = Console()
+
     display_header()
-    controller()
+    controller(console)
