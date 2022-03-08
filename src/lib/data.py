@@ -6,7 +6,7 @@ def request_raw_data(url, headers):
         request = requests.get(url=url, headers=headers)
         response_json = request.json()
     except:
-        raise Exception("Error fetching data")
+        raise Exception('Couldn\'t fetch data.')
 
     return response_json
 

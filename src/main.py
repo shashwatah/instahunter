@@ -20,7 +20,7 @@ def controller(console):
         raw_data = request_raw_data(api_url, HEADERS)
         
         if len(raw_data) == 0:
-            raise Exception("Requested returned no results")
+            raise Exception("Request returned no results.")
         
         if 'post_type' in input:
             processed_data = processor[input['query_type']](raw_data, input['post_type'])
@@ -29,10 +29,10 @@ def controller(console):
 
     if input['file_confirm']:
         file_name = create_json_file(input['query'], processed_data)
-        display_message(f'\nFile created, File Name: [bold red]{file_name}')
+        display_message(f'Data Fetched! [bold red]{file_name}[/bold red] created :thumbs_up:')
     else:
         display_data(processed_data)
-        display_message('\nDone! :thumbs_up:')
+        display_message('Done! :thumbs_up:')
 
 if __name__  == '__main__':
     console = Console()
@@ -42,6 +42,6 @@ if __name__  == '__main__':
     try:
         controller(console)
     except (KeyboardInterrupt, KeyError, SystemError):
-        display_message("Bye :waving_hand:")
+        display_message("Bye! :waving_hand:")
     except Exception as error:
         display_message(str(error), False)

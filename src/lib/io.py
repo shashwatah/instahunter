@@ -14,9 +14,14 @@ def get_input():
 
 def create_json_file(query, json_data):
     file_name = f'instahunter_{query}.json'
-    file = open(file_name, 'w+')
-    json.dump(json_data, file, indent=4)
-    file.close()
+    
+    try: 
+        file = open(file_name, 'w+')
+        json.dump(json_data, file, indent=4)
+        file.close()
+    except:
+        raise Exception('Couldn\'t create file.')
+
     return file_name
 
 def display_data(processed_data):
@@ -28,4 +33,4 @@ def display_message(message, success=True):
         msg_color = 'green'
     else:
         msg_color = 'red'
-    print(f'[bold {msg_color}]{message}')
+    print(f'\n[bold {msg_color}]{message}')
