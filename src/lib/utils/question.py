@@ -9,7 +9,7 @@ class UsernameTagValidator(Validator):
                 message='Please enter a valid query',
                 cursor_position=len(document.text))
 
-def get_post_options(input):
+def show_post_options(input):
     if input['query_type'] == 'posts':
         return True
     else:
@@ -59,7 +59,7 @@ QUESTIONS = [
                 'value': 'latest'
             }
         ],
-        'when': get_post_options
+        'when': show_post_options
     },
     {
         'type': 'confirm',
