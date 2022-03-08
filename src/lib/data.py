@@ -1,4 +1,14 @@
-from datetime import datetime 
+from datetime import datetime
+import requests
+
+def request_raw_data(url, headers):
+    try:
+        request = requests.get(url=url, headers=headers)
+        response_json = request.json()
+    except:
+        raise Exception("Error fetching data")
+
+    return response_json
 
 def process_posts(raw_data, post_type):
     processed_data = []
@@ -114,7 +124,7 @@ def process_search_results(raw_data):
 
     return processed_data
 
-dispatcher = {
+processor = {
     'posts': process_posts,
     'user_data': process_user_data,
     'user_posts': process_user_posts,

@@ -1,8 +1,7 @@
 from rich.console import Console
 
 from lib.io import display_header, get_input, create_json_file, display_data, display_message
-from lib.processor import dispatcher
-from lib.utils.helpers import request_raw_data
+from lib.data import request_raw_data, processor
 
 HEADERS = { 'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0'}
 
@@ -24,9 +23,9 @@ def controller(console):
             raise Exception("Requested returned no results")
         
         if 'post_type' in input:
-            processed_data = dispatcher[input['query_type']](raw_data, input['post_type'])
+            processed_data = processor[input['query_type']](raw_data, input['post_type'])
         else:
-            processed_data = dispatcher[input['query_type']](raw_data)
+            processed_data = processor[input['query_type']](raw_data)
 
     if input['file_confirm']:
         file_name = create_json_file(input['query'], processed_data)
