@@ -1,6 +1,7 @@
 from PyInquirer import style_from_dict, Token, Validator, ValidationError
 import regex
 
+# regex source: https://stackoverflow.com/a/64910992/14477608
 class UsernameTagValidator(Validator):
     def validate(self, document):
         ok = regex.match('^[\w](?!.*?\.{2})[\w.]{1,28}[\w]$', document.text)
