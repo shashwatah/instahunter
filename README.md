@@ -12,7 +12,7 @@ Data that can be fetched:
 
 <br/>
 
-<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/araekiel/instahunter/v2/assets/instahunter.gif">
+<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/araekiel/instahunter/main/assets/instahunter.gif">
 
 ## Notes
 
