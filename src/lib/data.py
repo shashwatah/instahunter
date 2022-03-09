@@ -81,6 +81,9 @@ def process_user_posts(raw_data):
     processed_data = []
     counter = 0
 
+    if raw_data['graphql']['user']['is_private']:
+        raise Exception('User\'s profile is private.')
+
     post_edges = raw_data['graphql']['user']['edge_owner_to_timeline_media']['edges']
 
     for post in post_edges:
