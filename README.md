@@ -1,17 +1,99 @@
-<pre>
-    ____           __        __                __           
-   /  _/___  _____/ /_____ _/ /_  __  ______  / /____  _____
-   / // __ \/ ___/ __/ __ `/ __ \/ / / / __ \/ __/ _ \/ ___/
- _/ // / / (__  ) /_/ /_/ / / / / /_/ / / / / /_/  __/ /    
-/___/_/ /_/____/\__/\__,_/_/ /_/\__,_/_/ /_/\__/\___/_/     
-                                                       </pre>
-
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0.0-blue)]()
+# instahunter
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]()
 
 Instahunter is a CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in.
+
 <br/>
+
 Data that can be fetched:
-- **Public Posts**: **Top** or **Latest** posts under a hashtag.
-- **User Data**: Public data of a user's profile.
-- **User Posts**: Posts by a user whose profile is public.
-- **Search**: Users from instagram search.
+- ***Public Posts***: ***Top*** or ***Latest*** posts under a hashtag.
+- ***User Data***: Public data of a user's profile.
+- ***User Posts***: Posts by a user whose profile is public.
+- ***Search***: Users from instagram search.
+
+<br/>
+
+<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/araekiel/instahunter/v2/assets/instahunter.gif">
+
+## Notes
+
+- Instagram has been blocking/rate-limiting IPs that make extensive requests to its web api. For more information on this check out this [forum](https://programmierfrage.com/items/instagram-public-api-a-1-is-banned-any-alternative).
+- If after a while of use, you start encountering continuous errors, it's probably because you have either been rate-limited or entirely blocked. Their are a couple of work-arounds for this issue:
+  - Switch to a different network (You'll have to do this everytime you get blocked).
+  - A more permanent fix would be to alter the code to use proxies.
+
+## Running from Source
+
+### Prerequisites
+
+- Git is need to clone the repository on your machine.
+- pip is needed to install the packages.
+- Python is needed to run the app.
+
+#### Ubuntu
+
+Run the following commands in a terminal:
+
+```bash
+$ sudo apt-get install git-core
+$ sudo apt install python3.7
+$ sudo apt install python3-pip
+```
+
+#### Windows
+
+Use the official links for downloading on Windows:
+
+- [Git](https://git-scm.com/)
+- [Python](https://www.python.org/)
+
+> pip comes with the installation of Python on Windows
+
+Run the following commands to confirm if the installation was successful:
+
+```bash
+$ git --version
+$ python --version
+$ pip --version 
+```
+
+### Installation & Configuration
+
+Clone the repo and cd into the directory: 
+
+```bash
+$ git clone https://github.com/araekiel/instahunter.git
+$ cd instahunter
+```
+
+Run the following command to install the required packages:
+
+```bash
+$ pip install -r requirements.txt
+```
+
+Once the packages are installed, run the following command to start instahunter:
+
+```bash
+$ python src/main.py
+```
+
+## Release & Changelog
+
+#### v2.0 Changelog: 
+- **click** has been replaced with **pyinquirer** for a better interface 
+- **rich** has been used for better text formatting.
+- Instagram blocking requests on its web api has been partially fixed.
+- The only output format available now is **json**.
+- Complete code refactor.
+
+#### v2.0 Executable Download:
+Click here: [Instahunter (.exe)](https://github.com/Araekiel/instahunter/releases/download/v2.0/instahunter.exe)
+
+## Authors
+
+- **Araekiel** - [Github](https://github.com/Araekiel)
+
+## License
+
+[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2020 Kumar Shashwat
