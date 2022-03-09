@@ -87,12 +87,12 @@ $ python src/main.py
 - Complete code refactor.
 
 #### v2.0 Executable Download:
-[Instahunter v2.0](https://github.com/Araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
+[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
 ## Authors
 
-- **araekiel** - [Github](https://github.com/Araekiel)
+- **araekiel** - [Github](https://github.com/araekiel)
 
 ## License
 
-[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2022 Kumar Shashwat
+[MIT License](https://github.com/araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2022 Kumar Shashwat
