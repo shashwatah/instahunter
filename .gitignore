@@ -1,2 +1,4 @@
-/dist
-/json
+/src/dist
+/src/json
+/src/lib/__pycache__
+/src/lib/utils/__pycache__

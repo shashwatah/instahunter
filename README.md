@@ -1,32 +1,37 @@
-<img alt="Instahunter" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/logo.png" height="100">
+# instahunter
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]()
 
-# Instahunter
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v1.6.3-blue)]() [![PR's Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat)](http://makeapullrequest.com) 
-
-[Instahunter](https://araekiel.github.io/instahunter) is a CLI OSINT app, that can fetch posts and user data from Instagram's frontend API in JSON or text format. I built it while fiddling around with the Instagram API for my other project, [Orion](https://github.com/Araekiel/orion).
+Instahunter is a CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in.
 <br/>
-<br/>
-Commands Insthaunter currently supports:
-- **getposts**: Fetch latest or top public posts with a Hashtag
-- **getuser**: Fetch public user data with a Username
-- **getuserposts**: Fetch recent public posts of a user with a Username
-- **search**: Search for users on Instagram
 
-#### Update:
-Instagram has added an auth barrier to its frontend API, and instahunter can't fetch any data anymore. This happened right when I was about to do a complete code refactor and replace click with a CUI built with pyInquirer and pyfiglet. I'm archiving this repo. 
+Data that can be fetched:
+- ***Public Posts***: ***Top*** or ***Latest*** posts under a hashtag.
+- ***User Data***: Public data of a user's profile.
+- ***User Posts***: Posts by a user whose profile is public.
+- ***Search***: Users from instagram search.
 
 <br/>
-<img alt="Screenshot" src="https://raw.githubusercontent.com/Araekiel/instahunter/gh-pages/public/images/screenshot.jpg">
 
-## Prerequisites
+<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/araekiel/instahunter/v2/assets/instahunter.gif">
+
+## Notes
+
+- Instagram has been blocking/rate-limiting IPs that make extensive requests to its web api. For more information on this check out this [forum](https://programmierfrage.com/items/instagram-public-api-a-1-is-banned-any-alternative).
+- If after a while of use, you start encountering continuous errors, it's probably because you have either been rate-limited or entirely blocked. Their are a couple of work-arounds for this issue:
+  - Switch to a different network (You'll have to do this everytime you get blocked).
+  - A more permanent fix would be to alter the code to use proxies.
+
+## Running from Source
+
+### Prerequisites
 
 - Git is need to clone the repository on your machine.
-- pip is needed to install packages.
+- pip is needed to install the packages.
 - Python is needed to run the app.
 
-### Ubuntu
+#### Ubuntu
 
-Install git, python and pip on your machine running Ubuntu:
+Run the following commands in a terminal:
 
 ```bash
 $ sudo apt-get install git-core
@@ -34,147 +39,55 @@ $ sudo apt install python3.7
 $ sudo apt install python3-pip
 ```
 
-### Windows
+#### Windows
 
 Use the official links for downloading on Windows:
 
 - [Git](https://git-scm.com/)
 - [Python](https://www.python.org/)
 
-> pip comes with the installation of Python on Windows
+> pip is installed along with python on windows.
 
+Run the following commands to confirm if the installation was successful:
 
-To run the app from source - [Git](https://git-scm.com/) is needed to clone the repository on your machine. [Python](https://www.python.org/) and [Click](https://click.palletsprojects.com/en/7.x/) are required to run the app from the source.
+```bash
+$ git --version
+$ python --version
+$ pip --version 
+```
 
-## Installation & Configuration
+### Installation & Configuration
 
 Clone the repo and cd into the directory: 
 
 ```bash
-$ git clone https://github.com/Araekiel/instahunter.git
+$ git clone https://github.com/araekiel/instahunter.git
 $ cd instahunter
 ```
 
-Instahunter was built with click package and needs it to run. Install click:
+Run the following command to install the required packages:
 
-Windows:
 ```bash
-pip install click
+$ pip install -r requirements.txt
 ```
 
-Ubuntu: 
-```bash
-$ pip3 install click
-```
-
-## Usage
-
-Running from the source:
+Once the packages are installed, run the following command to start instahunter:
 
 ```bash
-$ python instahunter.py
-```
-
-To get help use **--help**:
-
-```bash
-instahunter --help
-```
-
-```bash
-instahunter getposts --help
-```
-
-### Getting Posts
-
-Use the command **getposts** to get posts.
-
-Options:
-
-- `-tag`: tag you want to fetch posts with 
-- `--post-type` : latest(default) - fetch latest posts, top - fetch top posts
-
-```bash
-instahuter getposts -tag *hashtag* --post-type *latest or top*
-```
-
-### Getting User Data
-
-Use the command **getuser** to get user data.
-
-Options:
-
-- `-username`: username you want to fetch user data with
-
-```bash
-instahunter getuser -username *username*
-```
-
-### Getting User Posts
-
-Use the command **getuserposts** and option **-username** to get posts.
-
-```bash
-instahunter getuserposts -username *username*
-```
-
-### Searching for Users
-
-Use the command **search** and option **-query** to search for users.
-
-```bash
-instahunter search -query *query*
-```
-
-> All the above commands will display data in the terminal itself.
-
-### Creating a file with the data
-
-To create a file with the data retrieved use **-create-file** and **--file-type** options along with any option.
-
-Options:
-
-- `-create-file`: true - will create a file with the data, false(default) - won't create a file
-- `--file-type` : json - will create a json file, text(default) - will create a text file
-
-```bash
-instahunter getposts -tag *hashtag* -create-file *true or false* --file-type *json or text*
+$ python src/main.py
 ```
 
 ## Release & Changelog
 
-#### v1.6.3(Latest) Changelog:
-- Added headers to counter Instagram's rate limiting.
+#### v2.0 Changelog: 
+- **click** has been replaced with **pyinquirer** for a better interface.
+- **rich** has been used for better text formatting.
+- Instagram blocking requests on its web api has been partially fixed.
+- The only output format available now is **json**.
+- Complete code refactor.
 
-#### v1.6.1 Changelog: 
-- Updated Author name  
-
-#### v1.6.1 Changelog: 
-- Minor bug fix
-
-#### v1.6 Changelog: 
-- Command **gettopposts** removed
-- Command **getposts** has ***-post-type*** option now to fetch latest or top posts
-- Option ***-via*** removed from Command **getuser** (Deprecated endpoint)
-- Some data removed from Command **search** 
-- Minor bug fix
-
-> Currently only the Windows executable is available in the Release section
-
-## Download
-
-Click here: [Instahunter](https://github.com/Araekiel/instahunter/releases/download/v1.6.3/instahunter.exe)
-
-## Libraries
-
-- [Click](https://click.palletsprojects.com/en/7.x/) was used to make the CLI
-- [Pyinstaller](https://www.pyinstaller.org/) was used to build the executable
-- A customized version of [termynal](https://github.com/ines/termynal) by [Ines Montani](https://github.com/ines) was used on the [gh-pages website](https://araekiel.github.io/instahunter) to display the output 
- 
-## Contribution
-
-Fork the repository and open a pull request to contribute.
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+#### v2.0 Executable Download:
+[Instahunter v2.0](https://github.com/Araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
 ## Authors
 
@@ -182,5 +95,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## License
 
-
-[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2020 Kumar Shashwat
+[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2022 Kumar Shashwat
