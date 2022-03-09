@@ -80,7 +80,7 @@ $ python src/main.py
 ## Release & Changelog
 
 #### v2.0 Changelog: 
-- **click** has been replaced with **pyinquirer** for a better interface 
+- **click** has been replaced with **pyinquirer** for a better interface.
 - **rich** has been used for better text formatting.
 - Instagram blocking requests on its web api has been partially fixed.
 - The only output format available now is **json**.
@@ -95,4 +95,4 @@ $ python src/main.py
 
 ## License
 
-[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2020 Kumar Shashwat
+[MIT License](https://github.com/Araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2022 Kumar Shashwat
