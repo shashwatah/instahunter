@@ -2,7 +2,6 @@
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]()
 
 Instahunter is a CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in.
-
 <br/>
 
 Data that can be fetched:
@@ -47,7 +46,7 @@ Use the official links for downloading on Windows:
 - [Git](https://git-scm.com/)
 - [Python](https://www.python.org/)
 
-> pip comes with the installation of Python on Windows
+> pip is installed along with python on windows.
 
 Run the following commands to confirm if the installation was successful:
 
@@ -88,7 +87,7 @@ $ python src/main.py
 - Complete code refactor.
 
 #### v2.0 Executable Download:
-Click here: [Instahunter (.exe)](https://github.com/Araekiel/instahunter/releases/download/v2.0/instahunter.exe)
+[Instahunter v2.0](https://github.com/Araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
 ## Authors
 
