@@ -17,7 +17,7 @@ Data that can be fetched:
 ## Notes
 
 - Instagram has been blocking/rate-limiting IPs that make extensive requests to its web api. For more information on this check out this [forum](https://programmierfrage.com/items/instagram-public-api-a-1-is-banned-any-alternative).
-- If after a while of use, you start encountering continuous errors, it's probably because you've either been rate-limited or entirely blocked. Their are a couple of work-arounds for this issue:
+- If after a while of use, you start encountering continuous errors, it's probably because you've either been rate-limited or entirely blocked. There are a couple of work-arounds for this issue:
   - Switch to a different network (You'll have to do this everytime you get blocked).
   - A more permanent fix would be to alter the code to use proxies.
 
