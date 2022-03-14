@@ -22,6 +22,28 @@ Data that can be fetched:
   - A more permanent fix would be to alter the code to use proxies.
 - The JSON file is created at the destination where ***main.py*** or the executable exists.
 
+## Release & Changelog
+
+### Install with pip:
+
+Run the following command to install instahunter with pip:
+
+```bash
+$ pip install instahunter
+```
+
+### v2.0 Executable Download:
+
+[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
+
+### v2.0 Changelog: 
+
+- **click** has been replaced with **pyinquirer** for a better interface.
+- **rich** has been used for better text formatting.
+- Instagram blocking requests on its web api has been partially fixed with user-agent header.
+- The only output format available now is **json**.
+- Complete code refactor.
+
 ## Running from Source
 
 ### Prerequisites
@@ -77,28 +99,6 @@ Once the packages are installed, run the following command to start instahunter:
 ```bash
 $ python src/main.py
 ```
-
-## Release & Changelog
-
-#### Install with pip:
-
-Run the following command to install instahunter with pip:
-
-```bash
-$ pip install instahunter
-```
-
-#### v2.0 Executable Download:
-
-[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
-
-#### v2.0 Changelog: 
-
-- **click** has been replaced with **pyinquirer** for a better interface.
-- **rich** has been used for better text formatting.
-- Instagram blocking requests on its web api has been partially fixed with user-agent header.
-- The only output format available now is **json**.
-- Complete code refactor.
 
 ## Authors
 
