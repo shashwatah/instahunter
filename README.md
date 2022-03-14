@@ -1,5 +1,5 @@
 # Instahunter
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]()
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]() [![PyPI Release](https://img.shields.io/badge/pip-instahunter-brightgreen)]()
 
 A CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in or an API token.
 <br/>
@@ -80,15 +80,25 @@ $ python src/main.py
 
 ## Release & Changelog
 
+#### Install with pip:
+
+Run the following command to install instahunter with pip:
+
+```bash
+$ pip install instahunter
+```
+
+#### v2.0 Executable Download:
+
+[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
+
 #### v2.0 Changelog: 
+
 - **click** has been replaced with **pyinquirer** for a better interface.
 - **rich** has been used for better text formatting.
 - Instagram blocking requests on its web api has been partially fixed with user-agent header.
 - The only output format available now is **json**.
 - Complete code refactor.
-
-#### v2.0 Executable Download:
-[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
 ## Authors
 
