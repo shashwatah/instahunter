@@ -24,7 +24,7 @@ Data that can be fetched:
 
 ## Release & Changelog
 
-### Install with pip:
+### Install with pip
 
 Run the following command to install instahunter with pip:
 
@@ -32,11 +32,11 @@ Run the following command to install instahunter with pip:
 $ pip install instahunter
 ```
 
-### v2.0 Executable Download:
+### v2.0 Executable Download
 
 [Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
-### v2.0 Changelog: 
+### v2.0 Changelog
 
 - **click** has been replaced with **pyinquirer** for a better interface.
 - **rich** has been used for better text formatting.
