@@ -2,6 +2,7 @@
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]() [![PyPI Release](https://img.shields.io/badge/pip-instahunter-brightgreen)]()
 
 A CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in or an API token.
+Built with [PyInquirer](https://github.com/CITGuru/PyInquirer) and [rich](https://github.com/Textualize/rich).
 <br/>
 
 Data that can be fetched:
@@ -20,7 +21,7 @@ Data that can be fetched:
 - If after a while of use, you start encountering continuous errors, it's probably because you've either been rate-limited or entirely blocked. There are a couple of work-arounds for this issue:
   - Switch to a different network (You'll have to do this everytime you get blocked).
   - A more permanent fix would be to alter the code to use proxies.
-- The JSON file is created in the user folder (if you are using pip) or at the destination where ***main.py*** or the executable exists.
+- The JSON file is created at the destination where you run instahunter (if you are using pip), or where ***main.py*** or the executable exists.
 
 ## Release & Changelog
 
