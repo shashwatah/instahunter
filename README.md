@@ -20,7 +20,7 @@ Data that can be fetched:
 - If after a while of use, you start encountering continuous errors, it's probably because you've either been rate-limited or entirely blocked. There are a couple of work-arounds for this issue:
   - Switch to a different network (You'll have to do this everytime you get blocked).
   - A more permanent fix would be to alter the code to use proxies.
-- The JSON file is created at the destination where ***main.py*** or the executable exists.
+- The JSON file is created in the user folder (if you are using pip) or at the destination where ***main.py*** or the executable exists.
 
 ## Release & Changelog
 
