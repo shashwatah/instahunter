@@ -15,7 +15,7 @@ def main():
             raw_data = request_raw_data(input['query_type'], input['query'])
             
             if len(raw_data) == 0:
-                raise Exception("Request returned no results.")
+                raise Exception('Request returned no results.')
             
             if 'post_type' in input:
                 processed_data = processor[input['query_type']](raw_data, input['post_type'])
@@ -30,7 +30,7 @@ def main():
             display_message('Done! :thumbs_up:')
 
     except (KeyboardInterrupt, KeyError, SystemError):
-        display_message("Bye! :waving_hand:")
+        display_message('Bye! :waving_hand:')
     except Exception as error:
         display_message(str(error), False)
 
