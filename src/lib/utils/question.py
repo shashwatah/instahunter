@@ -69,7 +69,7 @@ QUESTIONS = [
     }
 ]
 
-pi_custom_style = style_from_dict({
+PI_CUSTOM_STYLE = style_from_dict({
     Token.QuestionMark: '#673ab7 bold',
     Token.Selected: '#cc5454',
     Token.Pointer: '#673ab7 bold',

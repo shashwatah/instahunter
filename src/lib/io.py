@@ -3,14 +3,14 @@ import pyfiglet
 from PyInquirer import prompt
 import json
 
-from lib.utils.question import QUESTIONS, pi_custom_style
+from lib.utils.question import QUESTIONS, PI_CUSTOM_STYLE
 
 def display_header():
     instahunter_header = pyfiglet.figlet_format('Instahunter', font='slant')
     print(f'[red]{instahunter_header}')
 
 def get_input():
-    return prompt(QUESTIONS, style=pi_custom_style)
+    return prompt(QUESTIONS, style=PI_CUSTOM_STYLE)
 
 def create_json_file(query, json_data):
     file_name = f'instahunter_{query}.json'
