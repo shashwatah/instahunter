@@ -34,7 +34,7 @@ def process_posts(raw_data, post_type):
        
         try:
             caption = edge['node']['edge_media_to_caption']['edges'][0]['node']['text']
-        except:
+        except KeyError:
             caption = 'No Caption'
 
         processed_data.append({
@@ -92,12 +92,12 @@ def process_user_posts(raw_data):
 
         try:
             caption = post_node['edge_media_to_caption']['edges'][0]['node']['text']
-        except:
+        except KeyError:
             caption = ''
 
         try:
             location = post_node['location']['name']
-        except:
+        except KeyError:
             location = 'No Location'
 
         processed_data.append({
