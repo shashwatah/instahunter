@@ -29,7 +29,7 @@ def main():
             display_data(processed_data)
             display_message('Done! :thumbs_up:')
 
-    except (KeyboardInterrupt, KeyError, SystemError):
+    except (KeyboardInterrupt, SystemError):
         display_message('Bye! :waving_hand:')
     except Exception as error:
         display_message(str(error), False)
