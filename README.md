@@ -1,5 +1,5 @@
 # Instahunter
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]() [![PyPI Release](https://img.shields.io/badge/pip-instahunter-brightgreen)]()
+[![MIT License](https://img.shields.io/badge/license-MIT-green)]() [![GitHub Release](https://img.shields.io/badge/release-v2.0-blue)]() [![PyPI Release](https://img.shields.io/badge/pip-instahunter-brightgreen)]()
 
 A CLI OSINT app that can fetch data from Instagram's Web API without the need of logging in or an API token.<br/>
 Built with [PyInquirer](https://github.com/CITGuru/PyInquirer) and [rich](https://github.com/Textualize/rich).
