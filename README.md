@@ -13,10 +13,11 @@ Data that can be fetched:
 
 <br/>
 
-<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/araekiel/instahunter/main/assets/instahunter.gif">
+<img alt="Instahunter GIF" src="https://raw.githubusercontent.com/shashwatah/instahunter/main/assets/instahunter.gif">
 
 ## Notes
 
+- ****Update:*** Instahunter doesn't work as intended anymore*
 - Instagram has been blocking/rate-limiting IPs that make extensive requests to its web api. For more information on this check out this [forum](https://programmierfrage.com/items/instagram-public-api-a-1-is-banned-any-alternative).
 - If after a while of use, you start encountering continuous errors, it's probably because you've either been rate-limited or entirely blocked. There are a couple of work-arounds for this issue:
   - Switch to a different network (You'll have to do this everytime you get blocked).
@@ -35,7 +36,7 @@ $ pip install instahunter
 
 ### v2.0 Executable Download
 
-[Instahunter v2.0](https://github.com/araekiel/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
+[Instahunter v2.0](https://github.com/shashwatah/instahunter/releases/download/v2.0/instahunter.exe) (.exe)
 
 ### v2.0 Changelog
 
@@ -85,7 +86,7 @@ $ pip --version
 Clone the repo and cd into the directory: 
 
 ```bash
-$ git clone https://github.com/araekiel/instahunter.git
+$ git clone https://github.com/shashwatah/instahunter.git
 $ cd instahunter
 ```
 
@@ -101,10 +102,6 @@ Once the packages are installed, run the following command to start instahunter:
 $ python src/main.py
 ```
 
-## Authors
-
-- **araekiel** - [Github](https://github.com/araekiel)
-
 ## License
 
-[MIT License](https://github.com/araekiel/instahunter/blob/master/LICENSE) | Copyright (c) 2022 Kumar Shashwat
+[MIT License](https://github.com/shashwatah/instahunter/blob/master/LICENSE) | Copyright (c) 2024 Kumar Shashwat
